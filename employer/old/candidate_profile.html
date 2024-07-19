@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Dei Jobs Dashboard</title>
+	
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+	<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css"> -->
+	<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.31/dist/sweetalert2.min.css"> -->
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	
+</head>
+<body>
+	
+	<div id="head_nav"></div>
+
+	<section class="main_container">
+		<div class="container py-5 dash_layout">
+			<aside class="sidebar skeleton-qqky8cwf6lu" id="side_bar"></aside>
+			<main id="search_result">
+				<div class="d-flex p-4 big_card">
+					
+					<div class="me-3">
+						<img src="images/default-user.png" class="img_icn" id="profile_img">
+					</div>
+					<div>
+						<div class="d-flex justify-content-between align-items-center">
+							<h4 class="txt-primary user_name fs-5 mb-0 skeleton-wf0uz5oqtvb"></h4>
+							<div class="fs-7" id="action_links">		
+							</div>
+						</div>
+						<div class="mt-2" id="sub_icons"></div>
+						<div class="row mt-3 applicants_list">
+							<div class="col-2 label">Current</div><div class="col-10 label-val" id="current_company"></div>
+							<div class="col-2 label">Previous</div><div class="col-10 label-val" id="previous_company"></div>
+							<div class="col-2 label">Education</div><div class="col-10 label-val" id="education"></div>
+							<div class="col-2 label">Pref. Location</div>
+							<div class="col-10 label-val skills_pills" id="pref_location"></div>							
+						</div>
+					</div>
+					
+				</div>
+				<div class="big_card p-4 mt-4 cv_section">
+					<h6 class="mb-0">
+						<span class="txt-primary cv_head position-relative">Profile Details</span>
+					</h6>
+					<hr>
+					<div>
+						<p class="cv_desc" id="profile_desc"></p>
+
+						<p class="mt-3">Key Skills</p>
+						<div class="skills_pills" id="skills"></div>
+
+					</div>
+				</div>
+
+				<div class="big_card p-4 mt-4 cv_section">
+					<h6 class="mb-0">
+						<span class="txt-primary cv_head position-relative">Work Summary</span>
+					</h6>
+					<hr>
+					<div>
+						<p class="cv_desc"></p>
+
+						<div class="row mt-3">
+							<div class="col-2 mb-2">Industary</div>
+							<div class="col-10" id="industry"></div>
+							<div class="col-2 mb-2">Department</div>
+							<div class="col-10"id="department"></div>
+							<div class="col-2 mb-2">Role</div>
+							<div class="col-10" id="job_role"></div>
+						</div>
+
+					</div>
+				</div>
+				<div class="big_card p-4 mt-4 cv_section">
+					<h6 class="mb-0">
+						<span class="txt-primary cv_head position-relative">Work Experience</span>
+					</h6>
+					<hr>
+					<div>
+						<div class=" mt-3" id="work_exp"></div>
+					</div>
+				</div>
+				<div class="big_card p-4 mt-4 cv_section">
+					<h6 class="mb-0">
+						<span class="txt-primary cv_head position-relative">Education</span>
+					</h6>
+					<hr>
+					<div id="education_data">
+						
+					</div>
+					
+				</div>
+				<div class="big_card p-4 mt-4 cv_section">
+					<h6 class="mb-0">
+						<span class="txt-primary cv_head position-relative">Language Known</span>
+					</h6>
+					<hr>
+					<div id="languages">						
+					</div>
+				</div>
+
+				<div class="big_card p-4 mt-4 cv_section">
+					<h6 class="mb-0">
+						<span class="txt-primary cv_head position-relative">Personal Details</span>
+					</h6>
+					<hr>
+					<div class="row" id="presonal_details"></div>
+				</div>
+
+				<div class="big_card p-4 mt-4 cv_section">
+					<h6 class="mb-0">
+						<span class="txt-primary cv_head position-relative">Desired Job  Details</span>
+					</h6>
+					<hr>
+					<div class="row" id="desired_details"></div>
+				</div>
+			</main>
+		</div>
+	</section>
+
+
+	<div id="footer_div"></div>
+
+
+	
+
+	<script src="js/jquery-3.7.0.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+	<!-- <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script> -->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.31/dist/sweetalert2.all.min.js"></script>
+	<script src="js/api.js"></script>
+	<script>
+		$(document).ready(function(){
+			const params = new URLSearchParams(window.location.search);
+            var candidate_id =  params.get("cid");
+
+
+			var getCandidateProfile = api_url+'/api/get-candidate-data';
+			var postData = {
+			    "employeeId": localStorage.getItem('employeeId'),
+			    "userId": candidate_id
+			};
+
+			$.ajax({
+                url: getCandidateProfile,
+                type: "POST",
+                data: JSON.stringify(postData),
+                dataType: "json",
+                contentType: 'application/json',
+                success: function(data) {
+                    if(data.code == 200 && data.data.user_data != null){
+                    	console.log(data);
+
+                    	
+
+                    	var user = data.data.user_data;
+                    	// console.log(data.user_data);,
+
+                		if(user.candidate_profile_picture){
+                			$("#profile_img").attr('src',user.candidate_profile_picture);
+                		}
+                    	var age = '';
+                		if(user.dob){
+                			age = new Date().getYear() - new Date(user.dob).getYear();
+                		}
+
+                    	$('.user_name').html(user.name+'<span> ('+user.gender+', '+age+')</span>');
+
+
+                    	if(user.experience){
+							$("#sub_icons").append('<span class="me-4"><i class="bi bi-briefcase-fill"></i> '+user.experience+' Year(s)</span>');							
+                    	}
+                    	if(user.desired_salary){
+                    		$("#sub_icons").append('<span class="me-4"><i class="bi bi-wallet-fill"></i> '+user.desired_salary+'</span>');	
+                    	}
+
+                    	if(user.location){
+                    		$("#sub_icons").append('<span class="me-4"><i class="bi bi-geo-alt-fill"></i> '+user.location+'</span>');	
+                    	}
+
+                    	if(user.dni_category){
+                    		$("#sub_icons").append('<span class="me-4"><i class="bi bi-people-fill"></i> '+user.dni_category+'</span>');	
+                    	}
+
+                    	if(user.languages){
+                    		lang = user.languages.split(",");
+                    		$(lang).each(function(i,v){
+                    			$("#languages").append("<p>"+v+"</p>");
+                    		})                    		
+                    	}
+
+        //             			<a href=""><i class="bi bi-download"></i></a>
+								// <a href=""><i class="bi bi-envelope"></i></a>
+								// <a href=""><i class="bi bi-telephone"></i></a>
+								// <a href=""><i class="bi bi-whatsapp"></i></a>
+
+						if(user.candidate_resume){
+							$("#action_links").append('<a target="_blank" href="'+user.candidate_resume+'"><i class="bi bi-download"></i></a>');
+						}
+
+						if(user.email){
+							$("#action_links").append('<a target="_blank" href="mailto:'+user.email+'"><i class="bi bi-envelope"></i></a>');
+						}
+
+						if(user.mobile){
+							$("#action_links").append('<a target="_blank" href="tel:'+user.mobile+'"><i class="bi bi-telephone"></i></a>');
+
+							$("#action_links").append('<a target="_blank" href="https://wa.me/+91'+user.mobile+'"><i class="bi bi-whatsapp"></i></a>');
+
+						}
+
+
+
+
+
+                    	if(user.dob){
+                    		dob = new Date(user.dob);
+                    		$("#presonal_details").append('<div class="col-2">Date of Birth</div><div class="col-10">'+dob.getDay()+' '+dob.toLocaleString('default', { month: 'long' })+' '+dob.getYear()+'</div>');
+                    	}
+                    	if(user.gender){                    		
+                    		$("#presonal_details").append('<div class="col-2">Gender</div><div class="col-10">'+user.gender+'</div>');
+                    	}
+                    	if(user.mobile){                    		
+                    		$("#presonal_details").append('<div class="col-2">Mobile</div><div class="col-10">'+user.mobile+'</div>');
+                    	}
+                    	if(user.email){                    		
+                    		$("#presonal_details").append('<div class="col-2">Email</div><div class="col-10">'+user.email+'</div>');
+                    	}
+
+                    	if(data.data.work_experience){
+                    		$(data.data.work_experience).each(function(i,v){
+                    			from_d = new Date(v.start_date);
+                    			from = "From "+from_d.toLocaleString('default', { month: 'long' })+ " "+from_d.getFullYear();
+                    			to_d = new Date(v.end_date);
+                    			to = " Till "+to_d.toLocaleString('default', { month: 'long' })+ " "+to_d.getFullYear();
+                    			var logo = 'images/icon/image_thumb.jpeg';
+                    			if(v.employer_logo){
+                    				logo = v.employer_logo;
+                    			}
+                    			if(v.is_current_company == 1){
+                    				
+                    				$("#current_company").html(v.role_name+", "+v.company_name+", "+from);
+                    			}else{
+                    				
+                    				$("#previous_company").html(v.role_name+", "+v.company_name+", " +from+ to);
+                    			}
+
+
+                    			$("#work_exp").append('<div class="d-flex mb-4"><img src="'+logo+'" class="img_icn" alt=""><div><p>'+v.role_name+", "+v.company_name+'</p><p>'+from+to+'</p></div></div>');
+
+
+                    		});	
+                    	}
+
+                    	if(data.data.education_data){
+                    		ed = data.data.education_data[0];
+                    		var pass = new Date(ed.passing_year);
+                    		$("#education").html(ed.degree+", "+ed.university+", "+pass.toLocaleString('default', { month: 'long' })+" "+pass.getFullYear());
+                    		$(data.data.education_data).each(function(i,v){
+                    			var pass = new Date(v.passing_year);
+                    			$("#education_data").append('<div class="d-flex mb-4"><img src="images/icon/degree.png" class="img_icn" alt=""><div><p>'+v.degree+", "+v.university+'</p><p>'+pass.toLocaleString('default', { month: 'long' })+" "+pass.getFullYear()+'</p></div></div>');
+
+                    		});
+
+                    	}
+
+                    	var pf_loc = '';
+                		if(user.preferred_location){
+                			preferred_location = user.preferred_location.split(',');
+                			
+                			$(preferred_location).each(function(ind, pf) {
+                				pf_loc += '<span>'+pf+'</span>';
+                			});
+
+                			$("#pref_location").html(pf_loc);
+                		}
+
+                		$("#profile_desc").html(user.bio);
+
+
+                		var sk_p = '';
+                		if(user.skill){
+                			skills = user.skill.split(',');
+                			
+                			$(skills).each(function(ind, sk) {
+                				sk_p += '<span>'+sk+'</span>';
+                			});
+                			$("#skills").html(sk_p);
+                		}
+                		$("#job_role").html(user.job_role);
+                		$("#industry").html(user.industry);
+
+
+                		if(data.data.preference_data){
+                			$(data.data.preference_data).each(function(i,v){
+                				if(v.question_id == "What type of job are you interested in?"){
+                					$("#desired_details").append('<div class="col-2">Job Type</div><div class="col-10">'+v.answer+'</div>');
+                				}
+
+                				if(v.question_id == "Also open to the following job type"){
+                					$("#desired_details").append('<div class="col-2">Employment Type</div><div class="col-10">'+v.answer+'</div>');
+                				}
+
+                				if(v.question_id == "What location do you want to work in?"){
+                					$("#desired_details").append('<div class="col-2">Prefered Location</div><div class="col-10">'+v.answer+'</div>');
+                				}
+
+                				if(v.question_id == "What is your desired salary?"){
+                					$("#desired_details").append('<div class="col-2">Desired Salary</div><div class="col-10">'+v.answer+'</div>');
+                				}
+
+
+
+                				
+                			});
+                		}
+
+
+
+
+                    }else{
+                    	Swal.fire('Something went wrong');
+                    	// location.assign(document.referrer);
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error('Error:', textStatus, errorThrown);
+                }
+            });
+
+    	});		
+	</script>	
+</body>
+</html>

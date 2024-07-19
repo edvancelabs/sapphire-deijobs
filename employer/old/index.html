@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Dei Jobs</title>
+	
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.31/dist/sweetalert2.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+	
+	<nav class="navbar sticky-top top">
+	  <div class="container">
+	    <a class="navbar-brand" href="#">
+	      <img src="images/logo.png" alt="Logo"  class="d-inline-block align-text-top">	      
+	    </a>
+	    
+	    <div class="justify-content-end ">
+	    	<a href="https://deijobs.in" class="header_menu me-5">Jobseeker Login</a>
+	    	<a href="" class="header_menu me-5">Connect with us</a>
+	    	<a href="" class="header_menu me-5">Help</a>
+		    <button class="btn btn-primary me-2  p-2 px-4" type="button">Employer Registeration</button>
+		</div>
+	  </div>
+	</nav>
+
+	<section class="bg-primary">
+		<div class="container p-5">
+			<div class="row">
+				<div class="col-7 px-5">
+					<h1 class="header_title">Platform where companies and job seekers connect</h1>
+					<div class="d-flex mt-5 fs-5 fw-light">
+						<div class="chk_box">
+							<div class="d-flex align-items-center">Attract the Best Talent</div>
+							<div class="d-flex align-items-center">Hire Fast, Hire Right</div>
+						</div>
+						<div class=" chk_box">
+							<div class="d-flex align-items-center">Find Relevant Profiles</div>
+							<div class="d-flex align-items-center">Quick & Easy to Use</div>
+						</div>
+					</div>
+					<div class="pt-5">
+						<p class="mt-5 mb-0 fs-7 fw-light">Empowering Inclusive Hiring <br/> with a Powerful Recruitment Platform.</p>
+						<!-- <p class="fs-4 fw-medium">openhire</p> -->
+					</div>
+				</div>
+				<div class="col-5 px-6">
+					<div id="register_form" class="bg-white text-black p-3 form_div">
+						<h5>Create Account</h5>
+						<form action="javascript:void(0)" class="mt-4">
+							<div class="mb-3">
+							    <label for="register_as" class="form-label">I want to register as*</label>
+							    <select name="" id="register_as" class="form-select fs-8">
+							    	<option value="hr_agency">HR Agency</option>
+							    	<option value="organization">Organization</option>
+							    </select>
+							</div>
+							<div class="mb-3">
+							    <label for="email" class="form-label">Email Adress</label>
+							    <input type="email" class="form-control fs-8" id="email" placeholder="Business Email">	
+							 </div>
+							<div class="mb-3">
+							    <label for="password" class="form-label">Password</label>
+							    <input type="password" class="form-control fs-8" id="password" placeholder="Password" >	
+							 </div>
+							 <div class="d-flex tnc_div">
+							 	<input type="checkbox" class="me-3 fs-8" id="tnc">
+							    <label for="tnc" class="form-label fw-light">I accept the <a href="" class="fw-medium txt-primary">Terms and Conditions</a> and <a href="" class="fw-medium txt-primary">Privacy Policy</a> </label>
+							 </div>
+							 <div>
+							 	<button class="btn btn-block text-white py-2 px-5 fw-m fs-s my-3 " id="create_account" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Creating...">Create Free Account</button>
+							 </div>							
+						</form>
+						<div>
+							<p class="fw-medium mb-4">Already a user? <a href="#" class="float-end fw-bold txt-primary" id="login_link">Login</a> </p>
+						</div>
+					</div>
+
+					<div id="verify_form" class="bg-white text-black p-3 form_div" style="display: none;">
+						<h5>Verify your Email</h5>
+						<form action="javascript:void(0)" class="mt-4">
+							<div class="mb-3">
+							    <p class="fs-10 fw-light">Enter verification code sent on</p>
+							</div>
+							<div class="mb-3 row">
+								<div class="fs-8 w-80 col-8" id="entered_email"></div>
+								<div class="txt-primary fw-medium col-4 text-end opacity-75 cursor-pointer" id="change_email">Change</div>
+								
+							</div>
+							<div class="mb-3">
+							   <div class="otp_div row text-center mt-5">
+							   		<div class="col">
+							   			<input name='code' class='code-input' required/>
+							   		</div>
+							   		<div class="col">
+							   			<input name='code' class='code-input' required/>
+							   		</div>
+							   		<div class="col">
+							   			<input name='code' class='code-input' required/>
+							   		</div>
+							   		<div class="col">
+							   			<input name='code' class='code-input' required/>
+							   		</div>
+							   		<div class="col">
+							   			<input name='code' class='code-input' required/>
+							   		</div>
+							   		<div class="col">
+							   			<input name='code' class='code-input' required/>
+							   		</div>
+							   </div>
+							</div>
+							<div class="mb-3">
+							 	<p class="fs-8">Haven’t received code? <span class="time_cntr">0:30</span><span class="resend_otp txt-primary fw-medium cursor-pointer">Resend</span></p>
+							</div>
+							<div  class="mt-5">
+							 	<button class="btn btn-block text-white py-2 px-5 fw-m fs-s my-3 opacity-75" id="verify-buttom" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Verifying...">Verify</button>
+							</div>							
+						</form>
+						
+					</div>
+					<div id="login_form" class="bg-white text-black p-3 form_div" style="display: none;">
+						<h5>Login</h5>
+						<form action="javascript:void(0)" class="mt-4">
+							<div class="mb-3">
+							    <label for="email" class="form-label">Email Adress</label>
+							    <input type="email" class="form-control fs-8" id="login_email" placeholder="Business Email">	
+							 </div>
+							<div class="mb-3">
+							    <label for="password" class="form-label">Password</label>
+							    <input type="password" class="form-control fs-8" id="login_password" placeholder="Password" >	
+							 </div>
+							 <div class="">							 	
+							    <a href="javascript:vpoid(0);" id="forget_link" class="txt-primary float-end">Forgot Password?</a>						    
+							 </div>
+							 <div>
+							 	<button class="btn btn-block text-white py-2 px-5 fw-m fs-s my-3 " id="employer_login" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Loading...">Login</button>
+							 </div>							
+						</form>
+						<div>
+							<p class="fw-medium mb-4">New user? <a href="#" class="float-end fw-bold txt-primary" id="register_link">Create Account</a> </p>
+						</div>
+					</div>
+
+					<div id="forget_form" class="bg-white text-black p-3 form_div" style="display: none;">
+						<h5>Forget Password</h5>
+						<form action="javascript:void(0)" class="mt-4">
+							<div class="mb-3">
+							    <label for="forget_email" class="form-label">Email Adress</label>
+							    <input type="email" class="form-control fs-8 required" id="forget_email" placeholder="Business Email">	
+							 </div>
+							 <div class="d-none" id="forget_2">
+							 	<div class="mb-3">
+								    <label for="forget_password" class="form-label">Password</label>
+								    <input type="password" class="form-control fs-8" id="forget_password" placeholder="Password" >	
+								</div>
+							 	<div class="mb-3">
+								   <div class="fg_otp_div row text-center mt-5">
+								   		<div class="col">
+								   			<input name='code' class='code-input' required/>
+								   		</div>
+								   		<div class="col">
+								   			<input name='code' class='code-input' required/>
+								   		</div>
+								   		<div class="col">
+								   			<input name='code' class='code-input' required/>
+								   		</div>
+								   		<div class="col">
+								   			<input name='code' class='code-input' required/>
+								   		</div>
+								   		<div class="col">
+								   			<input name='code' class='code-input' required/>
+								   		</div>
+								   		<div class="col">
+								   			<input name='code' class='code-input' required/>
+								   		</div>
+								   </div>
+								</div>
+							 	
+								<div>
+								 	<button class="btn btn-block text-white py-2 px-5 fw-m fs-s my-3 " id="reset_password" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Loading...">Reset Password</button>
+								 </div>		
+							 </div>
+													 
+							 <div>
+							 	<button class="btn btn-block text-white py-2 px-5 fw-m fs-s my-3 " id="employer_forget" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Loading...">Send Otp</button>
+							 </div>							
+						</form>
+						<div>
+							<p class="fw-medium mb-4">New user? <a href="#" class="float-end fw-bold txt-primary" id="register_link_forget">Create Account</a> </p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section>
+		<div class="container py-5">
+			<h2 class="text-center mb-4">Our Services</h2>
+			<p class="fs-7 fw-semibold text-center">For employers who need great people. Find Better, Faster.</p>
+			<div class="row mt-5">
+				<div class="col-4 mb-5">
+					<div>
+						<img class="w-100" src="images/resume-database.jpg" alt="">
+						<h4 class="fw-semibold mt-3">Unlimited Job Postings</h4>
+						<p class="fw-light text-body-secondary">As an employer on our platform, you'll have the freedom to post an unlimited number of job listings, allowing you to find the perfect candidates for your diverse workforce needs.</p>
+					</div>
+				</div>
+				<div class="col-4 mb-5">
+					<div>
+						<img class="w-100" src="images/resume-database.jpg" alt="">
+						<h4 class="fw-semibold mt-3">Access To Diverse Candidates</h4>
+						<p class="fw-light text-body-secondary">Gain access to a rich pool of talented individuals from underrepresented communities, including women, persons with disabilities, LGBTQ individuals, veterans (Army, Navy, Airforce), and retirees. We connect you with the diverse talent across various industries in India.</p>
+					</div>
+				</div>
+				<div class="col-4 mb-5">
+					<div>
+						<img class="w-100" src="images/resume-database.jpg" alt="">
+						<h4 class="fw-semibold mt-3">Only D&I Job Portal in India</h4>
+						<p class="fw-light text-body-secondary">We are proud to be India’s exclusive platform dedicated to diversity and inclusion. By choosing us, you're joining a community committed to fostering an inclusive workplace culture.</p>
+					</div>
+				</div>
+				<div class="col-4 mb-5">
+					<div>
+						<img class="w-100" src="images/resume-database.jpg" alt="">
+						<h4 class="fw-semibold mt-3">Access to India’s Top HR Agencies</h4>
+						<p class="fw-light text-body-secondary">Collaborate with India's leading HR agencies to streamline your hiring process and access top-tier talent. Our partnerships across industries ensure you have the best candidates at your disposal.</p>
+					</div>
+				</div>
+				<div class="col-4 mb-5">
+					<div>
+						<img class="w-100" src="images/resume-database.jpg" alt="">
+						<h4 class="fw-semibold mt-3">Stay up-to-date with marketing trends</h4>
+						<p class="fw-light text-body-secondary">Stay ahead of the curve by staying informed about the latest trends in HR and recruitment. Access our daily blogs and updates on HR topics, market trends, and more to keep your hiring strategies current and effective.</p>
+					</div>
+				</div>
+				<div class="col-4 mb-5">
+					<div>
+						<img class="w-100" src="images/resume-database.jpg" alt="">
+						<h4 class="fw-semibold mt-3">Share Your Job Postings on Other Platforms</h4>
+						<p class="fw-light text-body-secondary">We provide you with the tools to amplify your recruitment efforts, increase visibility of your job listing and attract a broader range of applicants by easily sharing your job postings on other relevant platforms.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+
+	<footer class="bg-primary">
+		<div class="container py-5">
+			<div class="row">
+				<div class="col-6">
+					<img src="images/logo.png" alt="">
+					<p class="fw-light mt-2">A specialised job portal focused on promoting <br>diversity, equity and inclusivity in the Indian job <br>market</p>
+					<ul class="fw-light f_links mt-5 list-unstyled">
+						<li><a href="privacy-policy.html">Privacy Policy</a></li>
+						<li><a href="terms-and-conditions.html">Terms & Conditions</a></li>
+						<li><a href="terms-of-use.html">Cookie Policy</a></li>
+					</ul>
+				</div>
+				<div class="col-6 d-flex justify-content-between ps-5">
+					<div>
+						<!-- <h5 class="mb-4">Product</h5>
+						<ul class="fw-light list-unstyled">
+							<li><a href="">Digital Invoice</a></li>
+							<li><a href="">Insights</a></li>
+							<li><a href="">Reimbursements</a></li>
+							<li><a href="">Virtual Assistant</a></li>
+							<li><a href="">Artificial Intelligence</a></li>
+						</ul> -->
+					</div>
+					<div>
+						<h5 class="mb-4">Resources</h5>
+						<ul class="fw-light list-unstyled">
+							<li><a href="/blog">Blog</a></li>
+							<!-- <li><a href="">Pricing</a></li>
+							<li><a href="">FAQ</a></li>
+							<li><a href="">Events</a></li>
+							<li><a href="">Ebook & Guide</a></li> -->
+						</ul>
+					</div>
+					<div>
+						<h5 class="mb-4">Follow Us</h5>
+						<ul class="fw-light list-unstyled">
+							<li><a href="https://www.linkedin.com/company/deijobsin/about/">LinkedIn</a></li>
+							<!-- <li><a href="">Twitter</a></li>-->
+							<!-- <li><a href="">Instagram</a></li>-->
+							<li><a href="https://www.facebook.com/profile.php?id=61552768880052">Facebook</a></li>
+							<!-- <li><a href="">YouTube</a></li>-->
+						</ul>
+					</div>
+
+				</div>
+			</div>
+			<div class="row mt-5">
+				<div class="col-12">
+					<p class="fw-light fs-10">© Deijobs 2023. All rights reserved.</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+
+	
+
+	<script src="js/jquery-3.7.0.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.31/dist/sweetalert2.all.min.js"></script>
+
+	<script src="js/api.js"></script>
+
+	<script>
+		$(document).ready(function(){
+			
+			const params = new URLSearchParams(window.location.search);
+
+			if(params.get('sc') && params.get('sc') == "login"){
+				setTimeout(function(){
+					$("#login_link").click();
+				},100)
+			}
+
+            var email = "";
+            var password = "";
+
+            var otpVerifyUrl = api_url+'/api/verify-otp-employer';
+            var loginUrl = api_url+'/api/employer-login';
+            var sendOTPUrl = api_url+'/api/send-otp-employer';
+            var forgetSendOtp = api_url+'/api/forgot-password-send-otp';
+            var forgetVerifyOtp = api_url+'/api/forgot-password-verify-otp';
+            
+
+//             api/forgot-password-send-otp
+// {
+//     "email": "kk@gmail.com"
+// }
+
+            function handleLoginResponse(response_data) {
+                console.log('Response data:', response_data);
+                if(response_data["code"] != 200){
+                    // alert(response_data["message"]);
+
+                    Swal.fire(response_data["message"]);
+
+                    return false;
+                }else{
+                    localStorage.setItem('employeeId', response_data["employeeId"]);
+                    localStorage.setItem('name', response_data["name"]);
+
+                    if(response_data['is_employee_profile_exist']){
+                    	if(response_data['is_employer_profile_exist']){
+                    		window.location.href = "dashboard.html";
+                    	}else{
+                    		if(response_data['registered_as'] == "hr_agency"){
+                    			window.location.href = "agency_company_details.html";
+                    		}else{
+                    			window.location.href = "company_details.html";
+                    		}
+                    		
+                    	}
+                    }else{
+                    	if(response_data['registered_as'] == "hr_agency"){
+                			window.location.href = "agency_profile_details.html";
+                		}else{
+                			window.location.href = "profile_details.html";
+                		}
+                    }
+                   
+                }
+            }
+
+            function handleSendOTPResponse(response_data) {
+                console.log('Response data:', response_data);
+                if(response_data["code"] != 200){
+                    // alert(response_data["message"]);
+                    Swal.fire(response_data["message"]);
+                }else{
+                    Swal.fire("OTP sent on email please enter otp");
+                    $("#entered_email").text($("#email").val());
+                    start_resend_timer();
+                    $("#register_form").css('display', 'none');
+                    $("#verify_form").css('display', 'block');
+                }
+            }
+
+            function handleVerifyResponse(response_data) {
+                console.log('Response data:', response_data);
+                if(response_data["code"] != 200){
+                    // alert(response_data["message"]);
+                    Swal.fire(response_data["message"]);
+                }else{
+                    localStorage.setItem('employeeId', response_data["employeeId"]);
+                    localStorage.setItem('name', response_data["name"]);
+
+                    var type = $("#register_as").val();
+                    localStorage.setItem('type', type);                 
+                    if(type == "hr_agency"){
+                    	window.location.href = "agency_profile_details.html";
+                    }else{
+                    	window.location.href = "profile_details.html";
+                    }
+                    
+                }
+            }
+
+            
+            function handleForgetOtpResponse(response_data) {
+                console.log('Response data:', response_data);
+                if(response_data["code"] != 200){
+                    // alert(response_data["message"]);
+                    Swal.fire(response_data["message"]);
+                }else{
+                    Swal.fire("OTP sent on email please enter otp");
+                    $("#forget_2").removeClass('d-none');
+                    $("#employer_forget").hide();
+                }
+            }
+
+            function handleForgetVerifyResponse(response_data){
+            	console.log('Response data:', response_data);
+            	if(response_data["code"] != 200){
+                    // alert(response_data["message"]);
+                    Swal.fire(response_data["message"]);
+                }else{
+                    Swal.fire("Password reset success");                   
+                    location.assign("?sc=login");
+                }
+
+
+            }
+
+            // $("#employer_forget").
+
+  			$("#login_link").on('click',  function(event) {
+  				event.preventDefault();
+  				$("#register_form").fadeOut(function(){
+  					$("#login_form").fadeIn();
+  				});
+  			});
+
+
+  			$("#register_link").on('click',  function(event) {
+  				event.preventDefault();
+  				$("#login_form").fadeOut(function(){
+  					$("#register_form").fadeIn();
+  				});
+  			});
+  			$("#register_link_forget").on('click',  function(event) {
+  				event.preventDefault();
+  				$("#forget_form").fadeOut(function(){
+  					$("#register_form").fadeIn();
+  				});
+  			});
+
+  			
+  			$("#forget_link").on('click',  function(event) {
+  				event.preventDefault();
+  				$("#login_form").fadeOut(function(){
+  					$("#forget_form").fadeIn();
+  				});
+  			});
+
+
+  			$("#employer_forget").click(function(){
+                
+  				if($("#forget_email").val() == ""){
+  					$("#forget_email").addClass('error_alert');
+  					return false;
+  				}
+                var postData = {
+                    "email": $("#forget_email").val()                  
+                };
+
+
+                api_call(forgetSendOtp, postData, handleForgetOtpResponse, $("#employer_forget"));
+            });
+
+            $("#reset_password").click(function(){
+                
+  				var otp = "";
+                $(".fg_otp_div .code-input").each(function () {
+                    otp = otp + $(this).val()
+                });
+                if(otp.length < 5){
+                	$(".fg_otp_div").addClass('error_alert');
+                }
+
+                var postData = {
+                    "email": $("#forget_email").val(),
+                    "password": $("#forget_password").val(),
+                    "otp": otp
+                };
+                api_call(forgetVerifyOtp, postData, handleForgetVerifyResponse, $("#reset_password"));
+            });
+
+            
+
+  			
+
+
+            $("#verify-buttom").click(function(){
+                var otp = "";
+                $(".code-input").each(function () {
+                    otp = otp + $(this).val()
+                });
+                if(otp.length < 5){
+                	$(".otp_div").addClass('error_alert');
+                }
+
+                var postData = {
+                    "email": email,
+                    "password": password,
+                    "otp": otp,
+                    "registered_as": $("#register_as").val()
+                };
+
+                api_call(otpVerifyUrl, postData, handleVerifyResponse, $("#verify-buttom"))
+
+            });
+
+            $("#create_account").click(function(){
+                email = $("#email").val();
+                password = $("#password").val();
+                register_as = $("#register_as").val();
+
+                if(register_as == ""){
+                	$("#register_as").addClass("error_alert");
+                	return false;
+                }else{
+                	$("#register_as").removeClass("error_alert");
+                }
+                if(email == ""){
+                	$("#email").addClass("error_alert");
+                	return false;
+                }else{
+                	$("#email").removeClass("error_alert");
+                }
+
+                if(password == ""){
+                	$("#password").addClass("error_alert");
+                	return false;
+                }else{
+                	$("#password").removeClass("error_alert");
+                }
+
+
+                if($("#tnc").prop('checked') == false){                    
+                    $(".tnc_div").addClass("error_alert");
+                    return false;
+                }
+                var postData = {
+                    "email": email,
+                    "register_as": register_as
+                };
+
+                api_call(sendOTPUrl, postData, handleSendOTPResponse, $("#create_account"))
+            });
+
+            $("#employer_login").click(function(){
+            	if($("#login_email").val() == ""){
+                	$("#login_email").addClass("error_alert");
+                	return false;
+                }else{
+                	$("#login_email").removeClass("error_alert");
+                }
+
+                if($("#login_password").val() == ""){
+                	$("#login_password").addClass("error_alert");
+                	return false;
+                }else{
+                	$("#login_password").removeClass("error_alert");
+                }
+
+                var postData = {
+                    "email": $("#login_email").val(),
+                    "password": $("#login_password").val()
+                };
+
+                api_call(loginUrl, postData, handleLoginResponse, $("#employer_login"))
+            });
+
+  			const inputElements = [...document.querySelectorAll('input.code-input')]
+
+			inputElements.forEach((ele,index)=>{
+			  ele.addEventListener('keydown',(e)=>{
+			    if(e.keyCode === 8 && e.target.value==='') inputElements[Math.max(0,index-1)].focus()
+			  })
+			  ele.addEventListener('input',(e)=>{
+			    const [first,...rest] = e.target.value
+			    e.target.value = first ?? ''
+			    const lastInputBox = index===inputElements.length-1
+			    const didInsertContent = first!==undefined
+			    if(didInsertContent && !lastInputBox) {
+			      inputElements[index+1].focus()
+			      inputElements[index+1].value = rest.join('')
+			      inputElements[index+1].dispatchEvent(new Event('input'))
+			    }
+			  })
+			});
+			var myInterval;
+			function start_resend_timer(){
+				$(".time_cntr").text('0:30');
+				$(".time_cntr").show();
+				$(".resend_otp").hide();
+				myInterval = setInterval(function () {
+					var tmr = $(".time_cntr").text();
+					tmr = tmr.split(":")[1];
+					tmr = tmr - 1;
+					$(".time_cntr").text("0:"+tmr);
+					if(tmr < 1){
+						clearInterval(myInterval);
+						$(".time_cntr").hide();
+						$(".resend_otp").show();
+					}
+				}, 1000);				
+			}
+			$(".resend_otp").click(function(){
+                email = $("#email").val();
+                password = $("#password").val();
+                register_as = $("#register_as").val();
+                
+                var postData = {
+                    "email": email,
+                    "register_as": register_as
+                };
+
+                api_call(sendOTPUrl, postData, handleSendOTPResponse)
+            });
+
+            $("#change_email").click(function(){            
+                $("#verify_form").css('display', 'none');
+                $("#register_form").css('display', 'block');
+            });
+
+			// function onSubmit(e){
+			//   e.preventDefault()
+			//   const code = inputElements.map(({value})=>value).join('')
+			//   console.log(code)
+			// }
+		});	
+	</script>	
+</body>
+</html>

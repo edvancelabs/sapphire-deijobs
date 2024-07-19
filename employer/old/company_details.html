@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Dei Jobs</title>
+	
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.31/dist/sweetalert2.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+
+</head>
+<body>
+	
+	<nav class="navbar sticky-top top">
+	  <div class="container">
+	    <a class="navbar-brand" href="#">
+	      <img src="images/logo.png" alt="Logo"  class="d-inline-block align-text-top">	      
+	    </a>
+	    
+	    
+	  </div>
+	</nav>
+
+	<section>
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-6 py-5">
+					<h5 class="txt-primary">Company Details</h5>
+					<div class="profile_form_div p-4">
+						<form action="javascript:void(0)">
+							<!-- <div class="mb-3">
+							    <label for="company_name" class="form-label">Company Name*</label>
+							    <input type="text" class="form-control fs-8 required" id="company_name" placeholder="Company Name">	
+							</div> -->
+							<div class="mb-3">
+							    <label for="company_website" class="form-label">Company Website*</label>
+							    <input type="text" class="form-control fs-8 required" id="company_website" placeholder="Enter url of company website">	
+							</div>
+							<div class="mb-3">
+							    <label for="company_overview" class="form-label">Company Overview*</label>
+							   
+							    <textarea class="form-control required" name="company_overview" id="company_overview" placeholder="Description" rows="3"></textarea>
+
+							</div>
+						
+							<div class="mb-3">
+							    <label for="mobile" class="form-label">Contact Number*</label>
+							    <input type="text" class="form-control fs-8 required" id="mobile" placeholder="Enter company contact number">	
+							</div>
+							
+							<div class="mb-3">
+							    <label for="mobile" class="form-label">Company Logo*</label>
+							    <div class="p-3 bg-white upload_container">
+								    <div class="upload_div text-center">
+							      		<img id="file_preview" src="images/icon/upload-cloud.png" alt="">
+							      		<p class="fw-bold mb-0 mt-3">Supported File Formats</p>
+							      		<p class="fw-light">(.jpg, .png)</p>
+							      		<div class="position-relative">
+							      			<button class="btn btn-block text-white py-2 px-4 mt-2">Upload</button>
+							      			<input type="file" class="upload_file" onchange="encodeImageFileAsURL(this)" />
+							      		</div>
+							      	</div>
+						      	</div>
+							</div>
+							<div>
+							 	<button class="btn btn-block text-white py-2 px-5 my-3 " id="save_employeer" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Saving...">Save</button>
+							 </div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	
+
+	<footer class="bg-primary">
+		<div class="container py-5">
+			<div class="row">
+				<div class="col-6">
+					<img src="images/logo.png" alt="">
+					<p class="fw-light mt-2">A specialised job portal focused on promoting <br>diversity, equity and inclusivity in the Indian job <br>market</p>
+					<ul class="fw-light f_links mt-5 list-unstyled">
+						<li><a href="">Privacy Policy</a></li>
+						<li><a href="">Terms & Conditions</a></li>
+						<li><a href="">Cookie Policy</a></li>
+					</ul>
+				</div>
+				<div class="col-6 d-flex justify-content-between ps-5">
+					<div>
+						<h5 class="mb-4">Product</h5>
+						<ul class="fw-light list-unstyled">
+							<li><a href="">Digital Invoice</a></li>
+							<li><a href="">Insights</a></li>
+							<li><a href="">Reimbursements</a></li>
+							<li><a href="">Virtual Assistant</a></li>
+							<li><a href="">Artificial Intelligence</a></li>
+						</ul>
+					</div>
+					<div>
+						<h5 class="mb-4">Resources</h5>
+						<ul class="fw-light list-unstyled">
+							<li><a href="">Blog</a></li>
+							<li><a href="">Pricing</a></li>
+							<li><a href="">FAQ</a></li>
+							<li><a href="">Events</a></li>
+							<li><a href="">Ebook & Guide</a></li>
+						</ul>
+					</div>
+					<div>
+						<h5 class="mb-4">Follow Us</h5>
+						<ul class="fw-light list-unstyled">
+							<li><a href="">LinkedIn</a></li>
+							<li><a href="">Twitter</a></li>
+							<li><a href="">Instagram</a></li>
+							<li><a href="">Facebook</a></li>
+							<li><a href="">YouTube</a></li>
+						</ul>
+					</div>
+
+				</div>
+			</div>
+			<div class="row mt-5">
+				<div class="col-12">
+					<p class="fw-light fs-10">© Openhire 2023. All rights reserved.</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+
+	
+
+	<script src="js/jquery-3.7.0.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.31/dist/sweetalert2.all.min.js"></script>
+	<script src="js/api.js"></script>
+	<script>
+		var base64_image = ""
+        function encodeImageFileAsURL(element) {
+            var file = element.files[0];
+            var reader = new FileReader();
+            reader.onloadend = function() {
+                imagebase64 = reader.result;
+                // console.log(imagebase64);
+                var base64result = reader.result.split(',')[1];
+                base64_image = base64result;
+                $("#file_preview").attr('src',imagebase64);
+                $("#file_preview").addClass('set_img_preview');
+            }
+            reader.readAsDataURL(file);
+        }
+
+		$(document).ready(function(){
+            var apiUrl = api_url+'/api/create-employer-details';
+            var getCompanyDetails = api_url+'/api/get-company-details';
+
+            $.ajax({
+                url: getCompanyDetails,
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({"employeeId": localStorage.getItem('employeeId')}),
+                success: function(data) {
+                    response_data = JSON.parse(data);
+                    console.log(response_data);
+                    if(response_data["code"] != 200){
+                        // alert(response_data["message"]);
+                        Swal.fire(response_data["message"]);
+                    }else{
+                        if(response_data.is_exists){
+                        	location.assign('dashboard.html');
+                        }
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error('Error:', textStatus, errorThrown);
+                }
+            });
+
+
+
+
+
+
+            $("#save_employeer").click(function(){
+
+            	var error_flag = false;
+            	$('.required').each(function(index, el) {
+            		if($(this).val() == ""){
+            			$(this).addClass('error_alert');
+            			error_flag = true;
+            			return false;
+            		}
+            	});
+            	if(base64_image == ""){
+            		error_flag = true;
+            	}
+            	if(error_flag){
+            		return false;
+            	}
+
+
+                console.log(base64_image);
+                var postData = {
+                    "employeeId": localStorage.getItem('employeeId'),
+                    // "companyName": $("#company_name").val(),
+                    "companyWebsite": $("#company_website").val(),
+                    "companyDetails": $("#company_overview").val(),
+                    "contactNumber": $("#mobile").val(),
+                    "companyLogo": base64_image
+                };
+
+                $("#save_employeer").Button("loading");
+                $.ajax({
+	                url: apiUrl,
+	                type: 'POST',
+	                contentType: 'application/json',
+	                data: JSON.stringify(postData),
+	                success: function(data) {
+	                    response_data = JSON.parse(data);
+	                    console.log(response_data);
+	                    if(response_data["code"] != 200){
+	                        // alert(response_data["message"]);
+	                        Swal.fire(response_data["message"]);
+	                    }else{
+	                        // alert(response_data["message"]);
+	                        window.location.href = "dashboard.html";
+	                    }
+	                },
+	                error: function(jqXHR, textStatus, errorThrown) {
+	                    console.error('Error:', textStatus, errorThrown);
+	                },
+	                complete: function(){
+	                	$("#save_employeer").Button("reset");
+	                }
+	            });
+
+            });
+        });	
+	</script>	
+</body>
+</html>

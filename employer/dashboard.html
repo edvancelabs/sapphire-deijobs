@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Dei Jobs Dashboard</title>
+	
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.31/dist/sweetalert2.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+
+</head>
+<body>
+	
+	<div id="head_nav"></div>
+
+	<section class="main_container">
+		<div class="container py-5 dash_layout">
+			<aside class="sidebar skeleton-qqky8cwf6lu" id="side_bar"></aside>
+			<main>
+					<div class="row mb-5 dashboard_kpi">
+						<div class="col-3">
+							<div class="card_box">
+								<p>Total Job Postings</p>
+								<img src="images/icon/posting.png" alt="">
+								<h5 id="total_job_posting"></h5>
+							</div>
+						</div>
+						<div class="col-3">
+							<div class="card_box">
+								<p>Applications Received</p>
+								<img src="images/icon/applications.png" alt="">
+								<h5 id="total_app_received"></h5>
+							</div>
+						</div>
+						<div class="col-3">
+							<div class="card_box">
+								<p>Total Candidates</p>
+								<img src="images/icon/candidates.png" alt="">
+								<h5 id="total_candidates"></h5>
+							</div>
+						</div>
+						<div class="col-3">
+							<div class="card_box">
+								<p>Today’s Users</p>
+								<img src="images/icon/users.png" alt="">
+								<h5 id="todays_user"></h5>
+							</div>
+						</div>
+
+					</div>
+					<div class="row mb-5">
+						<div class="col-6">
+							<div class="card_box_big">
+								<img src="images/dashboard-1.jpeg" class="w-100" alt="">
+								<div>
+									<p class="fs-7 fw-bold">Creating an Inclusive Workplace</p>
+									<p class="fs-10">Welcome to a New Era of Inclusion in the Indian Job Market.<br> At DEI Jobs, we believe that diversity is the lifeblood of progress! <br> We are on a mission to transform the Indian job market by <br>fostering a culture of inclusivity and creating an equitable future <br>for everyone!
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-6">
+							<div class="card_box_big">
+								<img src="images/dashboard-1.jpeg" class="w-100" alt="">
+								<div>
+									<p class="fs-7 fw-bold">Driving Innovation Through Diversity</p>
+									<p class="fs-10">A Diverse workforce brings fresh ideas and creativity to the table,<br> propelling your organization to new heights. We're committed <br>to bridging the gap and connecting you with exceptional <br>professionals who bring unique perspectives and skills to <br>your organization.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12">
+							<div class="big_card">
+								<div class="d-flex justify-content-between align-items-center mb-5">
+								    <div>
+									    <h5 class="fw-semibold">My Job Posts</h5>
+									    <p class="fw-medium fs-10 text-body-secondary mb-0"><img src="images/icon/tick.png" class="me-2" alt=""><span id="this_month_applicant"></span> applications received <span class="fw-normal">this month</span></p>
+								    </div>
+								    <div>
+									    <a href="job_posts.html"><button class="btn btn-block text-white py-2 px-5 ">Post a Job</button></a>
+								    </div>
+								</div>
+								<div class="table-responsive">
+									<table class="table">
+										<thead>
+										    <tr>
+										      <th class="col-8">JOB POSTS</th>
+										      <th class="col-2">APPLICANTS</th>
+										      <th class="col-2">POSTED</th>
+										    </tr>
+										</thead>
+										<tbody id="job_post">
+											<tr class="job_post_tr"></tr>
+										</tbody>
+									</table>
+
+								</div>
+							</div>
+						</div>
+					</div>
+			</main>
+		</div>
+	</section>
+
+
+	<div id="footer_div"></div>
+
+
+	
+
+	<script src="js/jquery-3.7.0.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.31/dist/sweetalert2.all.min.js"></script>
+	<script src="js/api.js"></script>
+	<script>
+		$(document).ready(function(){
+			// $("#menu_dashboard").addClass('active');
+	        var apiUrl = api_url+'/api/get-employee-dashboard-data';
+	        var postData = {
+	            "employeeId": localStorage.getItem('employeeId')
+	        };
+	        $.ajax({
+	            url: apiUrl,
+	            type: 'POST',
+	            contentType: 'application/json',
+	            data: JSON.stringify(postData),
+	            success: function(data) {
+	                response_data = JSON.parse(data);
+	                // console.log(response_data['jobPostsDetails']);
+	                if(response_data['code'] == 200){
+	                    $("#total_job_posting").html(response_data['totalJobs']);
+	                    $("#total_app_received").html(response_data['totalApplicationRecieved']);
+	                    $("#total_candidates").html(response_data['totalCandidates']);
+	                    $("#todays_user").html(response_data['todaysUser']);
+	                    $("#this_month_applicant").html(response_data['thisMonthRecievedApplication']);
+	                    
+	                    // console.log(response_data['jobPostsDetails'].length);
+	                    job_posted = "";
+	                    for(i=0; i<= response_data['jobPostsDetails'].length-1; i++){
+	                    	
+	                        // console.log(response_data['jobPostsDetails'][i]);
+	                        // if(response_data['jobPostsDetails'][i] != "undefined"){
+	                        data = '<tr>'+
+	                            '<td>'+response_data['jobPostsDetails'][i]['job_title']+'</td>'+
+	                            '<td>'+response_data['jobPostsDetails'][i]['user_count']+'</td>'+
+	                            '<td>'+response_data['jobPostsDetails'][i]['posted']+'</td>'+
+	                            '</tr>'+
+	                            '<tr>'
+	                        job_posted = job_posted + data;
+	                        // }	      
+	                                   	
+	                    }	
+	                    $("#job_post").html(job_posted);   
+
+	                }else{
+	                	Swal.fire('Something went wrong');
+	                }
+	            },
+	            error: function(jqXHR, textStatus, errorThrown) {
+	                console.error('Error:', textStatus, errorThrown);
+	            }
+	        });
+	    });
+		
+	</script>	
+</body>
+</html>

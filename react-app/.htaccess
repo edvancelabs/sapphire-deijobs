@@ -1,0 +1,31 @@
+RewriteEngine On
+RewriteCond %{REQUEST_URI} !^/$
+RewriteRule ^/employer/index\.html$ https://deijobs.in/employer/ [R=301,L]
+RewriteRule ^/employer/index\.html#$ https://deijobs.in/employer/ [R=301,L]
+
+RewriteEngine On
+RewriteBase /
+
+# Define specific patterns of URLs for which you want to use index.html as a fallback
+RewriteCond %{REQUEST_URI} ^/login$ [OR]
+RewriteCond %{REQUEST_URI} ^/jobs$ [OR]
+RewriteCond %{REQUEST_URI} ^/verify-mobile$ [OR]
+RewriteCond %{REQUEST_URI} ^/upload-resume$ [OR]
+RewriteCond %{REQUEST_URI} ^/create-profile$ [OR]
+RewriteCond %{REQUEST_URI} ^/more$ [OR]
+RewriteCond %{REQUEST_URI} ^/privacy_policy$ [OR]
+RewriteCond %{REQUEST_URI} ^/faq$ [OR]
+RewriteCond %{REQUEST_URI} ^/receipt$ [OR]
+RewriteCond %{REQUEST_URI} ^/account$ [OR]
+RewriteCond %{REQUEST_URI} ^/t&c$ [OR]
+RewriteCond %{REQUEST_URI} ^/termsofuse$ [OR]
+RewriteCond %{REQUEST_URI} ^/search-jobs$ [OR]
+RewriteCond %{REQUEST_URI} ^/showAll/ [OR]
+RewriteCond %{REQUEST_URI} ^/job/ [OR]
+RewriteCond %{REQUEST_URI} ^/notifications$ [OR]
+RewriteCond %{REQUEST_URI} ^/verification/ [OR]
+RewriteCond %{REQUEST_URI} ^/profile/ [OR]
+RewriteCond %{REQUEST_URI} ^/search$
+
+# If the request matches any of the specified patterns, serve index.html
+RewriteRule ^ /index.html [L]

@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Dei Jobs Dashboard</title>
+	
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.31/dist/sweetalert2.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+
+</head>
+<body>
+	
+	<div id="head_nav"></div>
+
+	<section class="main_container">
+		<div class="container py-5 dash_layout">
+			<aside class="sidebar skeleton-qqky8cwf6lu" id="side_bar"></aside>
+			<main>
+				<div class="row">
+					<div class="col-4 job_list_box">
+						<div class="mb-3  row">
+							<div class="col-6 pe-1">
+								<button id="add_job" class="btn btn-primary w-100 px-0" type="button">Add a Job Post</button>
+							</div>
+							<div class="col-6 ps-1">
+								<button id="fltr_jobs" class="col-6 btn btn-primary w-100" type="button">Filter Jobs</button>
+							</div>
+						</div>
+						<div>
+							<ul class="list-unstyled job_list_li" id="job_post_list"></ul>
+						</div>
+					</div>
+					<div class="col-8 big_card job_details_box job_desc_view" style="display: none">
+						<div class="d-flex justify-content-between mb-3">
+							<h4 id="detaile_role_name"></h4>
+							<div class="d-flex">
+								
+								<div class="dropdown jd_share">
+								  <button class="btn  dropdown-toggle py-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+								    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#4338CA" class="bi bi-share  cursor-pointer" viewBox="0 0 16 16">
+  									<path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/>
+								</svg>
+								  </button>
+								  <ul class="dropdown-menu">
+								    <li><a class="dropdown-item share_whatsapp" href="" target="_blank"><i class="bi bi-whatsapp me-3"></i>Whatsapp</a></li>
+								    <li><a class="dropdown-item share_email" href="#"><i class="bi bi-envelope me-3"></i>Email</a></li>
+								    <!-- <li><a class="dropdown-item share_facebook" href="#"><i class="bi bi-facebook"></i>Facebook</a></li> -->
+								  </ul>
+								</div>
+								<div class="ms-3 form-check form-switch">
+								  <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+								</div>
+							</div>
+						</div>
+						<div class="d-flex fw-light">
+							<!-- <p class=" me-5"><i class="bi bi-briefcase me-2"></i> <span id="min_exp"></span> - <span id="max_exp"></span> years</p> -->
+							<p class=" me-5"><i class="bi bi-briefcase me-2"></i> <span id="min_max_exp"></span></p>
+							<p class="ms-5"><i class="bi bi-geo-alt me-2"></i><span id="prefrence_category"></span></p>
+						</div>
+						<p class="fw-light mb-3"><i class="bi bi-geo-alt me-2"></i><span id="location"></span></p>
+						<div class="d-flex justify-content-between mb-4">
+							<p class="pt-3 fw-light">Posted on <span id="posted">  </span> <span class="fw-normal">• <span id="total_applicants"> Applicants</span></span></p>
+							<button class="btn btn-primary p-2 px-4" type="button" id="edit_job_post">Edit Job Post</button>
+						</div>
+
+						<div>
+							<ul class="nav nav-tabs mb-4" id="myTab">
+							  <li  aria-selected="true"><a data-bs-toggle="tab" role="tab" href="#menu1" class=" active" id="jd_tab">Job Description</a></li>
+							  <li class=" " aria-selected="false"><a data-bs-toggle="tab" role="tab" href="#menu2" class="applicant_list" id="ap_tab">Applicants <span id="total_app"></span></a></li>
+                              <span id="applicant_list">
+                              </span>
+							</ul>
+
+							<div class="tab-content">
+							  <div id="menu1" class="tab-pane fade active show"  role="tabpanel">
+							   	<p class="fw-semibold fs-8 mb-2">About this job</p>
+							    <p class="text-body-secondary" id="job_desc"></p>
+
+							    <p class="fw-semibold fs-8 mb-2">Role: <span class="fw-normal fs-9 text-body-secondary" id="role_name"></span></p>
+
+							    <p class="fw-semibold fs-8 mb-2">Industry Type: <span class="fw-normal fs-9 text-body-secondary" id="industry">-</span></p>
+
+							   <!--  <p class="fw-semibold fs-8 mb-2">Department: <span class="fw-normal fs-9 text-body-secondary">Customer Success / Services</span></p> -->
+
+							    <p class="fw-semibold fs-8 mb-2">Employment Type: <span class="fw-normal fs-9 text-body-secondary" id="employement_type">-</span></p>
+
+							    
+							    <p class="fw-semibold fs-8 mb-2">Education: <span class="fw-normal fs-9 text-body-secondary " id="education"></span></p>							   
+
+							    <p class="fw-semibold fs-8 mb-3">Key Skills: </p>
+							    <div class="skills_pills" id="key_skill">
+							    	<span>Interpersonal Skill</span><span>Process improvement</span>
+							    </div>
+
+
+							  </div>
+							  <div id="menu2" class="tab-pane fade"  role="tabpanel" >
+							   		<ul class="list-unstyled applicants_list"></ul>
+							  </div>
+							</div>
+						</div>
+
+					</div>
+
+					<div class="col-8 big_card job_details_box add_form hide">
+						<h5 class="txt-primary fw-semibold mb-4" id="form_title">Add Job</h5>
+						<form action="javascript:void(0);" id="job_post_form">
+							<div class="mb-3">
+							    <label for="add_job_title" class="form-label">Job Title*</label>
+							    <input type="text" class="form-control fs-8 required" id="add_job_title" placeholder="Enter Company Name">
+							</div>
+							<div class="mb-3">
+							    <label for="add_role" class="form-label">Role*</label>    
+							    <input type="text" class="form-control fs-8 required" id="add_role" placeholder="Enter job role">
+							</div>
+							<div class="mb-3">
+							    <label for="add_location" class="form-label">Job Location*</label>    
+							    <div class="row">
+							    	<div class="col-6">
+							    		<select name="add_location_type" id="add_location_type" class="form-select fs-8 required pcholder">
+									    	<option value="">Select an option</option>
+									    	<option value="Remote">Remote</option>
+									    	<option value="at_office">At office</option>								    	
+									    </select>
+							    	</div>
+							    	<div class="col-6">
+							    		<input type="text" class="form-control fs-8 " id="add_location" placeholder="Enter Location" disabled="true">
+							    	</div>
+							    </div>
+							</div>
+
+							<div class="mb-3">
+							    <label for="add_jd" class="form-label">Job Description*</label>
+							    <textarea class="form-control required" name="jd" id="add_jd" placeholder="Enter Job Description" rows="3"></textarea>
+							</div>
+							<div class="mb-3">
+							    <label for="add_key_responsibility" class="form-label">Key Responsibilities</label>
+							     <textarea class="form-control " name="add_key_responsibility" id="key_responsibility" placeholder="Enter key responsibilities" rows="3"></textarea>
+							</div>
+							<div class="mb-3">
+							    <label for="add_emp_type" class="form-label">Employment Type</label>
+							    <select name="add_emp_type" id="add_emp_type" class="form-select fs-8 pcholder">
+							    	<option value="">Select an option</option>
+							    	<option value="Full Time">Full Time</option>
+							    	<option value="Part Time">Part Time</option>
+							    	<option value="Internship">Internship</option>
+							    	
+							    </select>
+							</div>
+							<div class="mb-3">
+							    <label for="add_edu" class="form-label">Education</label>
+							    <select name="add_edu" id="add_edu" class="form-select fs-8 pcholder">
+							    	<option value="">Select an option</option>
+							    	<!--<option value="B Tech">B Tech</option>
+								<option value="M Tech">M Tech</option>-->
+								<option vlaue="10th Standard (SSC)">10th Standard (SSC)</option>
+<option vlaue="12th Standard (HSC)">12th Standard (HSC)</option>
+
+<option vlaue="Bachelor of Arts (B.A.)">Bachelor of Arts (B.A.)</option>
+<option vlaue="Bachelor of Science (B.Sc.)">Bachelor of Science (B.Sc.)</option>
+<option vlaue="Bachelor of Commerce (B.Com.)">Bachelor of Commerce (B.Com.)</option>
+<option vlaue="Bachelor of Engineering (B.E.) / Bachelor of Technology (B.Tech.)">Bachelor of Engineering (B.E.) / Bachelor of Technology (B.Tech.)</option>
+<option vlaue="Bachelor of Business Administration (BBA)">Bachelor of Business Administration (BBA)</option>
+<option vlaue="Bachelor of Computer Applications (BCA)">Bachelor of Computer Applications (BCA)</option>
+<option vlaue="Bachelor of Education (B.Ed.)">Bachelor of Education (B.Ed.)</option>
+<option vlaue="Bachelor of Laws (LL.B.)">Bachelor of Laws (LL.B.)</option>
+<option vlaue="Diploma (Technical or Vocational)">Diploma (Technical or Vocational)</option>
+
+<option vlaue="Master of Arts (M.A.)">Master of Arts (M.A.)</option>
+<option vlaue="Master of Science (M.Sc.)">Master of Science (M.Sc.)</option>
+<option vlaue="Master of Commerce (M.Com.)">Master of Commerce (M.Com.)</option>
+<option vlaue="Master of Business Administration (MBA)">Master of Business Administration (MBA)</option>
+<option vlaue="Master of Computer Applications (MCA)">Master of Computer Applications (MCA)</option>
+<option vlaue="Master of Technology (M.Tech.)">Master of Technology (M.Tech.)</option>
+
+<option vlaue="Ph.D. (Doctor of Philosophy)">Ph.D. (Doctor of Philosophy)</option>
+<option vlaue="M.Phil. (Master of Philosophy)">M.Phil. (Master of Philosophy)</option>
+<option vlaue="Certification Courses (Specific to Industry)">Certification Courses (Specific to Industry)</option>
+							    </select>
+							</div>
+							<div class="row mb-3">
+								<div class="col-6">
+								    <label for="add_min_exp" class="form-label">Minimum Experience</label>
+								    <input type="number" class="form-control fs-8" id="add_min_exp" placeholder="Enter Minimum Experience">
+								</div>
+								<div class="col-6">
+								    <label for="add_max_exp" class="form-label">Maximum Experience</label>
+								    <input type="number" class="form-control fs-8" id="add_max_exp" placeholder="Enter Maximum Experience">
+								</div>
+							</div>
+							
+							<div class="mb-3">
+							    <label for="add_salary" class="form-label">Salary</label>
+							    <select name="add_salary" id="add_salary" class="form-select fs-8 pcholder">
+							    	<option value="">Select an option</option>
+							    
+							    </select>
+							</div>
+							<div class="mb-3">
+							    <label for="add_skills" class="form-label">Skills</label>
+							    <input type="text" class="form-control fs-8" id="add_skills" placeholder="List of skills">
+							</div>
+
+							<div class="mb-3">
+							    <label for="add_pref_cat" class="form-label">Preference Category*</label>
+							    <select name="add_pref_cat[]" id="add_pref_cat" class="form-select fs-8 select2" multiple="multiple pcholder">
+							    	<!-- <option value="">Select an option</option> -->
+							    	<option value="Women">Women</option>
+							    	<option value="Person with Disability (PwD)">Person with Disability (PwD)</option>
+							    	<option value="LGBTQI+">LGBTQI+</option>
+							    	<option value="Veterans">Veterans</option>
+							    	<option value="Elderly">Elderly</option>							    	
+							    	
+							    </select>
+							</div>
+							<div class="mb-3">
+							    <label for="add_industry" class="form-label">Industry</label>
+							    <input type="text" class="form-control fs-8" id="add_industry" placeholder="Enter industry">
+							</div>
+							<div class="mb-3">
+							    <label for="add_expiry" class="form-label">Job Expiry*</label>
+							    <input type="date" class="form-control fs-8 required" id="add_expiry">
+							</div>
+							<div class="mb-3 pt-3  form-check form-switch">
+							  <input class="form-check-input" type="checkbox" role="switch" id="add_acitve" name="add_acitve" checked value="is_active">
+							</div>
+							<div class="mt-5">
+							 	<button class="btn btn-block  text-white py-2 px-5  my-3 " id="job_post" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Saving...">Submit</button>
+
+							 	<button class="btn btn-block  text-white py-2 px-5  my-3 hide" id="edit_job_post_save" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Updating...">Update</button>
+							 </div>
+						</form>
+					</div>
+
+					<div class="col-8 big_card job_details_box filter_jobs hide">
+						<h5 class="txt-primary fw-semibold mb-4">Filter Jobs</h5>
+						<form action="javascript:void(0);">
+							<div class="mb-3">
+							    <label for="flt_jobtitle" class="form-label">Job Title</label>
+							    <input type="text" class="form-control fs-8" id="flt_jobtitle" placeholder="Enter job title">
+							</div>
+
+							<div class="mb-3">
+							    <label for="flt_role" class="form-label">Role</label>
+							    <input type="text" class="form-control fs-8" id="flt_role" placeholder="Enter job role">
+							</div>
+							<!-- <div class="mb-3">
+							    <label for="flt_location" class="form-label">Location</label>
+							    <input type="text" class="form-control fs-8" id="flt_location" placeholder="Enter Job Location">
+							</div> -->
+
+							<div class="mb-3">
+							    <label for="flt_industry" class="form-label">Industry*</label>
+							    <input type="text" class="form-control fs-8" id="flt_industry" placeholder="Enter industry">
+							</div>
+							<div class="row mb-3">
+								<div class="col-6">
+								    <label for="flt_min_exp" class="form-label">Minimum Experience*</label>
+								    <input type="number" class="form-control fs-8" id="flt_min_exp" placeholder="Enter Minimum Experience">
+								</div>
+								<div class="col-6">
+								    <label for="flt_max_exp" class="form-label">Maximum Experience*</label>
+								    <input type="number" class="form-control fs-8" id="flt_max_exp" placeholder="Enter Maximum Experience">
+								</div>
+							</div>
+							
+							<div class="mb-3">
+							    <label for="flt_salary" class="form-label">Salary*</label>
+							    <select name="flt_salary" id="flt_salary" class="form-select fs-8 pcholder">
+							    	<option value="">Select an option</option>
+							    	
+							    </select>
+							</div>
+
+
+							<div class="mt-5">
+							 	<button class="btn btn-block  text-white py-2 px-5  my-3 " id="apply_filtr">Apply Filter</button>
+							 </div>
+						</form>
+					</div>
+				</div>
+			</main>
+		</div>
+	</section>
+
+
+	<div id="footer_div"></div>
+
+	<script src="js/jquery-3.7.0.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.31/dist/sweetalert2.all.min.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6UyQavucaLZJ08gEQf6R-FXUWV8jq_Vc&libraries=places"></script>
+	<script src="js/api.js"></script>
+	<script>
+		function initialize() {
+	        const input = document.getElementById('add_location');
+	         var options = {
+	          types: ['(cities)'],
+	          componentRestrictions: {country: "in"}
+	         };
+
+
+
+	        const autocomplete = new google.maps.places.Autocomplete(input, options);
+
+	        // Listen for the 'place_changed' event when the user selects a place
+	        autocomplete.addListener('place_changed', function () {
+	          const place = autocomplete.getPlace();
+	          input.value = place.name;
+	        });
+	      }
+
+	      // Call the initialize function when the Google Maps script is loaded
+	    google.maps.event.addDomListener(window, 'load', initialize);
+
+
+		$(document).ready(function(){
+			$('.select2').select2({
+				 multiple: true,
+			});
+			$("#add_location_type").on('change', function(event) {
+  				event.preventDefault();
+  				if($(this).val() == "at_office"){
+  					$("#add_location").prop('disabled',false);
+  					$("#add_location").focus();
+  				}else{
+  					$("#add_location").prop('disabled',true);
+  				}
+  			});
+
+  			$("#fltr_jobs").on('click', function(event) {
+  				event.preventDefault();
+  				$(".job_details_box").hide();
+  				$(".filter_jobs").show();
+  				// $(".job_details_box").fadeOut(function(){
+  				// 	$(".filter_jobs").fadeIn();
+  				// });
+  				$("#add_job").removeClass('active');
+  				$(this).addClass('active');
+  			});
+
+  			$("#add_job").on('click', function(event) {
+  				event.preventDefault();
+  				$(".job_details_box").hide();
+
+  				$("#form_title").html("Add Job");
+            	$("#job_post").show();
+            	$("#edit_job_post_save").hide();
+            	$("#job_post_form")[0].reset();
+            	$("#add_location").prop('disabled',true);
+
+  				$(".add_form").show();
+  				// $(".job_details_box").fadeOut(function(){
+  				// 	$(".add_form").fadeIn();
+  				// });
+  				$("#fltr_jobs").removeClass('active');
+  				$(this).addClass('active');
+  			});
+
+  			$(".job_list_li li").on('click', function(event) {
+  				event.preventDefault();
+  				$(".job_details_box").hide();
+  				$(".job_desc_view").show();
+
+  				// $(".job_details_box").fadeOut(function(){
+  				// 	$(".job_desc_view").fadeIn();
+  				// });
+  				$('.job_list_li li').removeClass('active');
+  				$(this).addClass("active");
+  				$("#fltr_jobs").removeClass('active');
+  				$("#add_job").removeClass('active');
+
+  			});
+
+            var getJobiUrl = api_url+'/api/get-employee-job-list';
+            var apiUrl = api_url+'/api/employee-job-post';
+            var jobDetailsUrl = api_url+'/api/get-job-details';
+            var filterJobUrl = api_url+'/api/get-employee-filtered-job-list';
+            var jobApplicantsUrl = api_url+'/api/get-job-applicants-list';
+            var getSalaryMasterUrl = api_url+'/api/salary-ranges';
+            var getJobRoleMasterUrl = api_url+'/api/job-roles';
+            var getCompanyListMasterUrl = api_url+'/api/get-company-list';
+            var getSkillsListMasterUrl = api_url+'/api/get-skill-list';
+            var getSIndustryListMasterUrl = api_url+'/api/get-idustry-list';
+            var activeDeactiveJobUrl = api_url+'/api/active-deactive-job';
+            var masterDataComplete = api_url+'/api/get-masters-details';
+            var applicationStatusAPi = api_url+'/api/employee-request-action';
+            var postData = {
+                "employeeId": localStorage.getItem('employeeId')
+            };
+
+            $.ajax({
+                url: getSalaryMasterUrl,
+                type: "GET",
+                dataType: "json",
+                success: function(data) {
+                    // console.log(data['data']);
+                    salary_list = '<option value="">Select an option</option>'
+                    for(i=0; i<= data['data'].length-1; i++){
+                        salary_list = salary_list + '<option value='+data['data'][i]['id']+'>'+data['data'][i]['name']+'</option>'
+                    $("#add_salary").html(salary_list);
+                    $("#flt_salary").html(salary_list);
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error('Error:', textStatus, errorThrown);
+                }
+            });
+
+            
+            $( "#add_role, #flt_role" ).autocomplete({
+		      source: function( request, response ) {
+		        $.ajax( {
+		          url: masterDataComplete,
+		          dataType: "json",
+		          method: "POST",
+		          data: {
+		            name: request.term,
+		            tableName: "job_roles"
+		          },
+		          success: function( data ) {
+		            response($.map(data.data, function (item) {
+	                    return {
+	                        label: item.name,
+	                        value: item.name
+	                    };
+	                }));
+		          }
+		        } );
+		      },
+		      minLength: 0,
+		      select: function( event, ui ) {
+		        
+		      }
+		    });
+
+		    function split( val ) {
+			    return val.split( /,\s*/ );
+			}
+
+  			function extractLast( term ) {
+     			return split( term ).pop();
+   			}
+
+   // $( "#search" )
+   //      .autocomplete({
+   //           minLength: 0,
+   //           source: function( request, response ) {
+   //               response( $.ui.autocomplete.filter(
+   //                   items, extractLast( request.term ) ) );
+   //           },
+   //           focus: function() {
+   //               return false;
+   //           },
+   //          select: function( event, ui ) {
+   //              var terms = split( this.value );
+   //              terms.pop();
+   //              terms.push( ui.item.value );
+   //              terms.push( "" );
+   //              this.value = terms.join( ", " );
+   //              return false;
+   //          }
+   //      });
+
+
+
+		    $( "#add_skills" ).autocomplete({
+		      source: function( request, response ) {
+		        $.ajax( {
+		          url: masterDataComplete,
+		          dataType: "json",
+		          method: "POST",
+		          data: {
+		            name: extractLast( request.term ),
+		            tableName: "skills"
+		          },
+		          success: function( data ) {
+		            response($.map(data.data, function (item) {
+	                    return {
+	                        label: item.name,
+	                        value: item.name
+	                    };
+	                }));
+		          }
+		        } );
+		      },
+		      minLength: 0,
+		      // multiple: true,
+		      select: function( event, ui ) {
+		        var terms = split( this.value );
+                terms.pop();
+                terms.push( ui.item.value );
+                terms.push( "" );
+                this.value = terms.join( ", " );
+                return false;
+		      }
+		    });
+
+		    $( "#add_industry, #flt_industry" ).autocomplete({
+		      source: function( request, response ) {
+		        $.ajax( {
+		          url: masterDataComplete,
+		          dataType: "json",
+		          method: "POST",
+		          data: {
+		            name: request.term,
+		            tableName: "sub_industry_expertises"
+		          },
+		          success: function( data ) {
+		            response($.map(data.data, function (item) {
+	                    return {
+	                        label: item.name,
+	                        value: item.name
+	                    };
+	                }));
+		          }
+		        } );
+		      },
+		      minLength: 0,
+		      select: function( event, ui ) {
+		        
+		      }
+		    });
+
+            // $.ajax({
+            //     url: getJobRoleMasterUrl,
+            //     type: "GET",
+            //     dataType: "json",
+            //     success: function(data) {
+            //         // console.log(data['data']);
+            //         job_roles = '<option value="">Select an option</option>';
+            //         // for(i=0; i<= data['data'].length-1; i++){
+            //         //     job_roles = job_roles + '<option value='+data['data'][i]['id']+'>'+data['data'][i]['name']+'</option>'
+                    	
+
+            //         // }
+            //     },
+            //     error: function(jqXHR, textStatus, errorThrown) {
+            //         console.error('Error:', textStatus, errorThrown);
+            //     }
+            // });
+
+
+            // $.ajax({
+            //     url: getCompanyListMasterUrl,
+            //     type: "GET",
+            //     dataType: "json",
+            //     success: function(data) {
+            //         // console.log(data['data']);
+            //     },
+            //     error: function(jqXHR, textStatus, errorThrown) {
+            //         console.error('Error:', textStatus, errorThrown);
+            //     }
+            // });
+
+            // $.ajax({
+            //     url: getSkillsListMasterUrl,
+            //     type: "GET",
+            //     dataType: "json",
+            //     success: function(data) {
+            //         // console.log(data['data']);
+            //     },
+            //     error: function(jqXHR, textStatus, errorThrown) {
+            //         console.error('Error:', textStatus, errorThrown);
+            //     }
+            // });
+
+            // $.ajax({
+            //     url: getSIndustryListMasterUrl,
+            //     type: "GET",
+            //     dataType: "json",
+            //     success: function(data) {
+            //         // console.log(data['data']);
+            //         industry_list = '<option value="">Select an option</option>'
+            //         for(i=0; i<= data['data'].length-1; i++){
+            //             industry_list = industry_list + '<option value='+data['data'][i]['id']+'>'+data['data'][i]['name']+'</option>'
+            //         $("#add_industry").html(industry_list);
+            //         }
+            //     },
+            //     error: function(jqXHR, textStatus, errorThrown) {
+            //         console.error('Error:', textStatus, errorThrown);
+            //     }
+            // });
+            // $("#job_post_list").html("");
+            $.ajax({
+                url: getJobiUrl,
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(postData),
+                success: function(data) {
+                    response_data = JSON.parse(data);
+                    console.log(response_data['jobDetails']);
+                    if(response_data['code'] == 200){
+                        $("#job_post_list").html(" ");
+                        for(i=0; i<= response_data['jobDetails'].length-1; i++){
+                            var jobs_list = '<a href="javascript:void(0);"><li class=" job_post job_post'+response_data['jobDetails'][i]['id']+'" data-id='+response_data['jobDetails'][i]['id']+'>'+
+                                '<p class="fs-8 mb-1">'+response_data['jobDetails'][i]['job_title']+'</p>'+
+                                '<p class="fs-10 text-body-secondary mb-0">';
+
+                                if(response_data['jobDetails'][i]['employement_type'] != ""){
+                                	jobs_list += '<span>'+response_data['jobDetails'][i]['employement_type']+'</span> • '; 
+                                }
+
+                                // '<span>'+response_data['jobDetails'][i]['company_name']+'</span> •'
+                                jobs_list += '<span>'+response_data['jobDetails'][i]['city']+'</span></p>'+
+                            '</li>';
+                            // setTimeout(function(){
+                            	$("#job_post_list").append(jobs_list);
+                            // })
+                            
+                            // job_posted = job_posted + jobs_list;
+                        	
+                        }
+                        // $("#job_post_list").html(job_posted);
+                        if($("#job_post_list li").length){
+                            $('#job_post_list .job_post:first').click();
+                            // $(".job_desc_view").fadeIn();
+                        }else{
+                        	$("#job_post_list").append('<li class="job_post">Lets, post your first job!</li>');
+                        	$("#add_job").click();
+                        }
+
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error('Error:', textStatus, errorThrown);
+                }
+            });
+
+            $("#job_post").click(function(){
+            	var error = false;
+            	$(".required").each(function(index, el) {
+            		if($(this).val() == ""){
+            			$(this).addClass('error_alert');
+            			error = true;
+            			return false;
+            		}else{
+            			$(this).removeClass('error_alert');
+            		}
+            	});
+
+
+            	if(error){
+            		return false;
+            	}
+
+            	if($("#add_location_type").val() == "at_office" && $("#add_location").val() == ""){
+            		$("#add_location").addClass('error_alert');
+            		return false;
+            	}
+
+            	var city = $("#add_location_type").val();
+            	if($("#add_location_type").val() == "at_office" ){
+            		city = $("#add_location").val();
+            	}
+
+                var jobPostData = {
+                    "employeeId": localStorage.getItem('employeeId'),
+                    "jobId": "",
+                    "jobTitle": $("#add_job_title").val(),
+                    "role": $("#add_role").val(),
+                    "jobDetails": $("#add_jd").val(),
+                    "keyResponsiblities": $("#key_responsibility").val(),
+                    "employementType": $("#add_emp_type").val(),
+                    "education": $("#add_edu").val(),
+                    "minimumExp": $("#add_min_exp").val(),
+                    "maximumExp": $("#add_max_exp").val(),
+                    "salary": $("#add_salary").val(),
+                    "skill": $("#add_skills").val(),
+                    "category": $("#add_pref_cat").val().join(','),
+                    "industryName": $("#add_industry").val(),
+                    "jobExpiry": $("#add_expiry").val(),
+                    "isActive": $("#add_acitve").prop('checked'),
+                    "city": city
+                };
+
+                $("#job_post").Button('loading');
+                $.ajax({
+                    url: apiUrl,
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(jobPostData),
+                    success: function(data) {
+                        response_data = JSON.parse(data);
+                        // console.log(response_data['jobDetails']);
+                        if(response_data['code'] != 200){
+                        	// alert(response_data['message']);
+                        	Swal.fire(response_data["message"]);
+                        }else{
+                        	location.reload();
+                        }
+
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.error('Error:', textStatus, errorThrown);
+                    },
+                    complete: function(){
+                    	$("#job_post").Button('reset');
+                    }
+                });
+            });
+            $("#edit_job_post").click(function(){
+            	$("#form_title").html("Edit Job");
+            	$("#job_post").hide();
+            	$("#edit_job_post_save").show();
+            	$(".job_details_box").hide();
+
+
+
+                var job_id = $("#edit_job_post").data('edit_job_id');
+                var jobDetailsData = {
+                    "employeeId": localStorage.getItem('employeeId'),
+                    "jobId": job_id
+                };
+
+                // $("#edit_job_post").Button('loading');
+                $.ajax({
+                    url: jobDetailsUrl,
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(jobDetailsData),
+                    success: function(data) {
+                        response_data = JSON.parse(data);
+                        data = response_data['jobDetails'];                        
+
+                        $("#add_job_title").val(data.job_title);
+						$("#add_role").val(data.role_name);
+						$("#add_jd").val(data.job_details);
+						$("#key_responsibility").val(data.key_responsibilities);
+						if(data.city_name == "Remote"){
+							$("#add_location_type").val("Remote");
+							$("#add_location").prop('disabled',true);
+						}else{
+							$("#add_location_type").val("at_office");
+							$("#add_location").val(data.city_name);
+							$("#add_location").prop('disabled',false);
+
+						}
+
+
+
+						$("#add_emp_type").val(data.employement_type);
+						$("#add_edu").val(data.education);
+						$("#add_min_exp").val(data.minimum_exp);
+						$("#add_max_exp").val(data.maximum_exp);
+						$("#add_salary").val(data.salary);
+						$("#add_skills").val(data.skill);
+
+						console.log(data.category_name.split(','));
+
+						$("#add_pref_cat").val(data.category_name.split(','));
+						$("#add_pref_cat").trigger('change');
+
+						$("#add_industry").val(data.industry_name);
+						$("#add_expiry").val(data.job_expiry.split(' ')[0]);
+
+						if(data.is_active == "1"){
+                        	$("#add_acitve").prop('checked',true);
+                        }else{
+                        	$("#add_acitve").prop('checked',false);
+                        }                 
+                        
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.error('Error:', textStatus, errorThrown);
+                    },
+                    complete: function(){
+                    	// $("#edit_job_post").Button('reset');
+                    }
+                });
+
+            	$(".add_form").show();
+            });
+            $("#edit_job_post_save").click(function(){
+            	var error = false;
+            	$(".required").each(function(index, el) {
+            		if($(this).val() == ""){
+            			$(this).addClass('error_alert');
+            			error = true;
+            			return false;
+            		}else{
+            			$(this).removeClass('error_alert');
+            		}
+            	});
+
+
+            	if(error){
+            		return false;
+            	}
+
+            	if($("#add_location_type").val() == "at_office" && $("#add_location").val() == ""){
+            		$("#add_location").addClass('error_alert');
+            		return false;
+            	}
+
+            	var city = $("#add_location_type").val();
+            	if($("#add_location_type").val() == "at_office" ){
+            		city = $("#add_location").val();
+            	}
+
+                var jobPostData = {
+                    "employeeId": localStorage.getItem('employeeId'),
+                    "jobId": $("#edit_job_post").data('edit_job_id'),
+                    "jobTitle": $("#add_job_title").val(),
+                    "role": $("#add_role").val(),
+                    "jobDetails": $("#add_jd").val(),
+                    "keyResponsiblities": $("#key_responsibility").val(),
+                    "employementType": $("#add_emp_type").val(),
+                    "education": $("#add_edu").val(),
+                    "minimumExp": $("#add_min_exp").val(),
+                    "maximumExp": $("#add_max_exp").val(),
+                    "salary": $("#add_salary").val(),
+                    "skill": $("#add_skills").val(),
+                    "category": $("#add_pref_cat").val().join(','),
+                    "industryName": $("#add_industry").val(),
+                    "jobExpiry": $("#add_expiry").val(),
+                    "isActive": $("#add_acitve").prop('checked'),
+                    "city": city
+                };
+
+                $("#edit_job_post_save").Button('loading');
+                $.ajax({
+                    url: apiUrl,
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(jobPostData),
+                    success: function(data) {
+                        response_data = JSON.parse(data);
+                        if(response_data['code'] != 200){
+                        	// alert(response_data['message']);
+
+                        	Swal.fire(response_data["message"]);
+                        }else{
+                        	location.reload();
+                        }
+
+
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.error('Error:', textStatus, errorThrown);
+                    },
+                    complete: function(){
+                    	$("#edit_job_post_save").Button('reset');
+                    }
+                });
+            });
+            $('body').on('click', '.job_post', function() {
+            	var obj = $(this);
+                var job_id = $(this).attr('data-id');
+                var jobDetailsData = {
+                    "employeeId": localStorage.getItem('employeeId'),
+                    "jobId": job_id
+                };
+
+                $("#total_app").html('');
+                bootstrap.Tab.getInstance($('#myTab li:first-child a')).show();
+                // $('#jd_tab').click();
+
+                $.ajax({
+                    url: jobDetailsUrl,
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(jobDetailsData),
+                    success: function(data) {
+                        response_data = JSON.parse(data);
+                        data = response_data['jobDetails'];
+                        // console.log(data);
+
+
+                        $("#edit_job_post").data('edit_job_id',job_id);
+
+                        var exp = '-';
+                        if(data.minimum_exp != null){
+                        	exp = data.minimum_exp;
+                        }
+
+                        if(data.maximum_exp != null){
+                        	exp = exp+' - '+data.maximum_exp;
+                        }
+
+                        if(exp != '-'){
+                        	exp += ' years';
+                        }
+                        $("#min_max_exp").html(exp);
+
+
+                        $("#prefrence_category").html(data.category_name);
+                        $("#location").html(data.city_name);
+                        $("#posted").html(data.posted);
+                        $("#total_applicants").html(response_data.totalApplicansts+ ' Applicants');
+                        $("#role_name").html(data.role_name);
+                        $(".share_whatsapp").attr('href','https://wa.me/?text=*'+data.job_title+'*%0a'+data.job_details);
+                        $(".share_email").attr('href','mailto:?to=&subject=JD for '+data.job_title+'&body='+data.job_details);
+
+                        
+
+                        $("#job_desc").html(data.job_details);                        
+                        $("#industry").html(data.industry_name);
+
+                        $("#employement_type").html(data.employement_type);
+
+                        $("#education").html(data.education);
+
+                        $("#key_skill").html("");
+                        var skill = data.skill.split(',');
+                        $(skill).each(function(index, el) {
+                        	if(el != ""){
+					if(index < 10){
+                        			$("#key_skill").append('<span>'+el+'</span>');
+					}else{
+						$("#key_skill").append('<span>+'+(skills.length - 10 )+'More</span>');
+						return false;
+					}
+                        	}
+                        	
+                        });
+
+                        if(data.is_active == "1"){
+                        	$("#flexSwitchCheckChecked").prop('checked',true);
+                        }else{
+                        	$("#flexSwitchCheckChecked").prop('checked',false);
+                        }
+                        
+
+
+                        $("#total_app").html('('+response_data.totalApplicansts+')');
+                        $(".applicant_list").attr("data-jobid", job_id);
+                        $("#flexSwitchCheckChecked").attr("data-jobid", job_id);
+                        $("#detaile_role_name").html(data.job_title);
+
+                        $(".applicants_list").html("");
+
+                        $(".filter_jobs").hide();
+                        $(".add_form").hide();
+                        $(".job_desc_view").show();
+                        $('.job_post').removeClass('active');
+                        obj.addClass('active');
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.error('Error:', textStatus, errorThrown);
+                    }
+                });
+            });
+
+            var offset = 0;
+            var limit = 10;
+            function filtered_job_list(){
+                console.log(offset);
+                console.log(limit);
+                var filterJobData = {
+                    "employeeId": localStorage.getItem('employeeId'),
+                    "jobTitle": $("#flt_jobtitle").val(),
+                    "role": $("#flt_role").val(),
+                    "location": "",
+                    "salaryRange": $("#flt_salary").val(),
+                    "industry": $("#flt_industry").val(),
+                    "minExperience": $("#flt_min_exp").val(),
+                    "maxExperience": $("#flt_max_exp").val(),
+                    "offset": offset,
+                    "limit": limit
+                };
+
+                $.ajax({
+                    url: filterJobUrl,
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(filterJobData),
+                    success: function(data) {
+                        response_data = JSON.parse(data);
+                        
+                        if(response_data['code'] == 200){
+                            if(response_data['jobList'].length > 0){
+                                offset = offset + limit;
+                            }
+                            $("#job_post_list").html("");
+	                        for(i=0; i<= response_data['jobList'].length-1; i++){
+	                            var jobs_list = '<a href="javascript:void(0);"><li class=" job_post job_post'+response_data['jobList'][i]['id']+'" data-id='+response_data['jobList'][i]['id']+'>'+
+	                                '<p class="fs-8 mb-1">'+response_data['jobList'][i]['job_title']+'</p>'+
+	                                '<p class="fs-10 text-body-secondary mb-0">';
+
+	                                if(response_data['jobList'][i]['employement_type'] != ""){
+	                                	jobs_list += '<span>'+response_data['jobList'][i]['employement_type']+'</span> • '; 
+	                                }
+
+	                                // '<span>'+response_data['jobList'][i]['company_name']+'</span> •'
+	                                jobs_list += '<span>'+response_data['jobList'][i]['city']+'</span></p>'+
+	                            '</li>';
+	                            $("#job_post_list").append(jobs_list);
+	                            // job_posted = job_posted + jobs_list;
+	                        	
+	                        }
+
+                        }
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.error('Error:', textStatus, errorThrown);
+                    }
+                });
+            }
+
+            $(".applicant_list").click(function(){
+                var job_id = $(this).attr('data-jobid')
+                var jobApplicantsData = {
+                    "jobId": job_id
+                };
+                $(".applicants_list").html("");
+                $.ajax({
+                    url: jobApplicantsUrl,
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(jobApplicantsData),
+                    success: function(data) {
+                        response_data = JSON.parse(data);
+                        console.log(response_data['data']);
+                        if(response_data['code'] == 200){
+                            
+                            
+                            if(response_data['data'].length > 0){
+
+                            	a_data = response_data.data;
+                            	$(a_data).each(function(index, el) {
+                            		var image = 'images/default-user.png';
+		                    		if(el.photo){
+		                    			image = el.photo;
+		                    		}
+		                    		var sk_p = '';
+		                    		if(el.skills != null){
+		                    			skills = el.skills.split(',');
+		                    			
+		                    			$(skills).each(function(ind, sk) {
+		                    				sk_p += '<span>'+sk+'</span>';
+		                    			});
+		                    		}
+
+		                    		var pf_loc = '';
+		                    		if(el.preferred_location != null){
+		                    			preferred_location = el.preferred_location.split(',');
+		                    			
+		                    			$(preferred_location).each(function(ind, pf) {
+		                    				pf_loc += '<span>'+pf+'</span>';
+		                    			});
+		                    		}
+		                    		var age = '';
+		                    		if(el.dob){
+		                    			age = new Date().getYear() - new Date(el.dob).getYear();
+		                    		}
+		                    		var edu = '';
+		                    		if(el.studentEducation.length > 0){
+		                    			edu = el.studentEducation[0].degree_id+', '+el.studentEducation[0].university_id+' ('+el.studentEducation[0].passing_year+')';
+		                    		}
+	         						var applicants_list = '<li class="d-flex p-2"><div class="me-3"><img src="'+image+'" class="img_icn"></div><div><div class="d-flex justify-content-between align-items-center"><h4 class="txt-primary user_name fs-5 mb-0">'+el.name+' <span>('+el.gender+', '+age+')</span></h4><div class="fs-7 d-flex"><a href="candidate_profile.html?cid='+el.candidate_id+'"><i class="bi bi-eye"></i></a><a href="mailto:'+el.email+'"><i class="bi bi-envelope"></i></a><a href="tel:'+el.mobile+'"><i class="bi bi-telephone"></i></a><a href="https://wa.me/+91'+el.mobile+'"><i class="bi bi-whatsapp"></i></a>'+
+	         							'<div class="action_btn1"><div class="dropdown"><span class="ms-4" id="action_status'+el.user_job_id+'">'+el.employee_action+'</span><i class="bi bi-three-dots-vertical fs-5 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></i><ul class="dropdown-menu" data-aid="'+el.user_job_id+'"><li><a class="dropdown-item update_status" data-status="Accepted" href="#">Accept</a></li><li><a class="dropdown-item update_status" data-status="Rejected" href="#">Reject</a></li><li><a class="dropdown-item update_status" data-status="On Hold" href="#">On Hold</a></li><li><a class="dropdown-item update_status" data-status="In Process" href="#">In Process</a></li><li><a class="dropdown-item update_status" data-status="Shortlisted" href="#">Shortlisted</a></li></ul></div></div>'+
+
+	         						'</div></div><div class="mt-2"><span class="me-4"><i class="bi bi-briefcase-fill"></i> '+el.experience+' Year(s)</span><span class="me-4"><i class="bi bi-wallet-fill"></i> '+el.salary+'</span><span class="me-4"><i class="bi bi-geo-alt-fill"></i> '+el.location+'</span><span class=""><i class="bi bi-people-fill"></i> '+el.dni_category+'</span></div><div class="row mt-3"><div class="col-3 label">Current</div><div class="col-9 label-val">'+el.current_company+'</div><div class="col-3 label">Previous</div><div class="col-9 label-val">'+el.previous_company+'</div><div class="col-3 label">Education</div><div class="col-9 label-val">'+edu+'</div><div class="col-3 label">Pref. Location</div><div class="col-9 label-val">'+pf_loc+'</div><div class="col-3 label">Skills</div><div class="col-9 label-val skills_pills">'+sk_p+'</div></div></div></li>';
+
+
+                        		// setTimeout(function(){
+                        			$(".applicants_list").append(applicants_list);
+                        		// },2000);
+
+                        		
+                            	});
+
+
+
+                                
+                            }else{
+                            	$(".applicants_list").html(" ");
+                            }
+                        }
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.error('Error:', textStatus, errorThrown);
+                    }
+                });
+            });
+            $(document).on('click', '.update_status', function(event) {
+            	event.preventDefault();
+            	var status = $(this).data('status');
+            	var user_job_id = $(this).parents('.dropdown-menu').data('aid');
+            	console.log(user_job_id+" "+status);
+
+            	$.ajax({
+                    url: applicationStatusAPi,
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({"userJobId": user_job_id, "action": status}),
+                    success: function(data) {
+                        response_data = JSON.parse(data);
+                        if(response_data['code'] == 200){
+                           // alert("update success");
+                           Swal.fire('Update success');
+                           $("#action_status"+user_job_id).html(status);
+
+                        }else{
+                            // alert(response_data['message']);
+                            Swal.fire(response_data["message"]);
+                        }
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.error('Error:', textStatus, errorThrown);
+                    }
+                });
+
+
+            });
+            $("#apply_filtr").click(function(){
+                filtered_job_list()
+            })
+
+            
+
+            $('#flexSwitchCheckChecked').change(function() {
+            	$('#flexSwitchCheckChecked').prop('disabled',true);
+                var isChecked = $(this).prop('checked');
+                var job_id = $(this).attr('data-jobid');
+                var active_flag = isChecked ? true : false;
+                $.ajax({
+                    url: activeDeactiveJobUrl,
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({"jobId": job_id, "active": active_flag}),
+                    success: function(data) {
+                        response_data = JSON.parse(data);
+                        if(response_data['code'] != 200){
+                            $('#flexSwitchCheckChecked').prop('checked',!$('#flexSwitchCheckChecked').prop('checked'));
+                        }
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.error('Error:', textStatus, errorThrown);
+                    },
+                    complete: function(){
+                    	$('#flexSwitchCheckChecked').prop('disabled',false);
+                    }
+                });
+            });
+		});		
+	</script>	
+</body>
+</html>

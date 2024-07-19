@@ -1,0 +1,26 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+
+ERROR - 2023-03-13 04:04:06 --> Severity: error --> Exception: The requested URL was not found on the server. /Applications/MAMP/htdocs/citypay/application/libraries/razorpay-php/src/Request.php 142
+ERROR - 2023-03-13 04:09:29 --> Severity: error --> Exception: The requested URL was not found on the server. /Applications/MAMP/htdocs/citypay/application/libraries/razorpay-php/src/Request.php 142
+ERROR - 2023-03-13 04:10:37 --> Severity: error --> Exception: The requested URL was not found on the server. /Applications/MAMP/htdocs/citypay/application/libraries/razorpay-php/src/Request.php 142
+ERROR - 2023-03-13 04:34:05 --> Severity: error --> Exception: The requested URL was not found on the server. /Applications/MAMP/htdocs/citypay/application/libraries/razorpay-php/src/Request.php 142
+ERROR - 2023-03-13 04:34:28 --> Severity: error --> Exception: The requested URL was not found on the server. /Applications/MAMP/htdocs/citypay/application/libraries/razorpay-php/src/Request.php 142
+ERROR - 2023-03-13 14:39:14 --> Severity: error --> Exception: Payment processing failed due to error at bank or wallet gateway /Applications/MAMP/htdocs/citypay/application/libraries/razorpay-php/src/Request.php 142
+ERROR - 2023-03-13 14:39:47 --> Severity: error --> Exception: Payment processing failed due to error at bank or wallet gateway /Applications/MAMP/htdocs/citypay/application/libraries/razorpay-php/src/Request.php 142
+ERROR - 2023-03-13 14:40:31 --> Severity: error --> Exception: The requested URL was not found on the server. /Applications/MAMP/htdocs/citypay/application/libraries/razorpay-php/src/Request.php 142
+ERROR - 2023-03-13 14:41:13 --> Severity: error --> Exception: The requested URL was not found on the server. /Applications/MAMP/htdocs/citypay/application/libraries/razorpay-php/src/Request.php 142
+ERROR - 2023-03-13 14:43:53 --> Severity: error --> Exception: The payment amount must be an integer. /Applications/MAMP/htdocs/citypay/application/libraries/razorpay-php/src/Request.php 139
+ERROR - 2023-03-13 15:07:32 --> Severity: error --> Exception: syntax error, unexpected 'array' (T_ARRAY), expecting function (T_FUNCTION) or const (T_CONST) /Applications/MAMP/htdocs/citypay/application/libraries/Qrcode/QRCodeReader.php 37
+ERROR - 2023-03-13 15:08:56 --> Severity: error --> Exception: syntax error, unexpected 'readonly' (T_STRING), expecting function (T_FUNCTION) or const (T_CONST) /Applications/MAMP/htdocs/citypay/application/libraries/Qrcode/QRCodeReader.php 38
+ERROR - 2023-03-13 15:09:22 --> Severity: Error --> Interface 'Zxing\Reader' not found /Applications/MAMP/htdocs/citypay/application/libraries/Qrcode/QRCodeReader.php 35
+ERROR - 2023-03-13 15:14:40 --> Severity: error --> Exception: Class 'Zxing\QrReader' not found /Applications/MAMP/htdocs/citypay/application/controllers/Developers.php 474
+ERROR - 2023-03-13 15:15:24 --> Severity: error --> Exception: syntax error, unexpected 'readonly' (T_STRING), expecting function (T_FUNCTION) or const (T_CONST) /Applications/MAMP/htdocs/citypay/application/libraries/php-qrcode/lib/QrReader.php 24
+ERROR - 2023-03-13 15:16:05 --> Severity: error --> Exception: syntax error, unexpected '\' (T_NS_SEPARATOR), expecting function (T_FUNCTION) or const (T_CONST) /Applications/MAMP/htdocs/citypay/application/libraries/php-qrcode/lib/QrReader.php 24
+ERROR - 2023-03-13 15:16:19 --> Severity: error --> Exception: syntax error, unexpected 'Zxing' (T_STRING), expecting function (T_FUNCTION) or const (T_CONST) /Applications/MAMP/htdocs/citypay/application/libraries/php-qrcode/lib/QrReader.php 24
+ERROR - 2023-03-13 15:16:50 --> Severity: error --> Exception: Class 'Zxing\QrReader' not found /Applications/MAMP/htdocs/citypay/application/controllers/Developers.php 474
+ERROR - 2023-03-13 15:18:21 --> Severity: error --> Exception: syntax error, unexpected 'array' (T_ARRAY), expecting function (T_FUNCTION) or const (T_CONST) /Applications/MAMP/htdocs/citypay/application/libraries/php-qrcode/lib/Qrcode/QrCodeReader.php 37
+ERROR - 2023-03-13 15:18:39 --> Severity: error --> Exception: syntax error, unexpected 'readonly' (T_STRING), expecting function (T_FUNCTION) or const (T_CONST) /Applications/MAMP/htdocs/citypay/application/libraries/php-qrcode/lib/Qrcode/QrCodeReader.php 38
+ERROR - 2023-03-13 15:18:43 --> Severity: error --> Exception: syntax error, unexpected 'Decoder' (T_STRING), expecting function (T_FUNCTION) or const (T_CONST) /Applications/MAMP/htdocs/citypay/application/libraries/php-qrcode/lib/Qrcode/QrCodeReader.php 38
+ERROR - 2023-03-13 15:18:48 --> Severity: Error --> Interface 'Zxing\Reader' not found /Applications/MAMP/htdocs/citypay/application/libraries/php-qrcode/lib/Qrcode/QrCodeReader.php 35
+ERROR - 2023-03-13 15:19:14 --> Severity: error --> Exception: syntax error, unexpected 'array' (T_ARRAY), expecting function (T_FUNCTION) or const (T_CONST) /Applications/MAMP/htdocs/citypay/application/libraries/php-qrcode/lib/Qrcode/QrCodeReader.php 37
+ERROR - 2023-03-13 17:22:06 --> Severity: error --> Exception: syntax error, unexpected '$client_secret' (T_VARIABLE), expecting ']' /Applications/MAMP/htdocs/citypay/application/controllers/Developers.php 344

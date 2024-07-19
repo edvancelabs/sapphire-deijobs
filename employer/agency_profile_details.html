@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Dei Jobs</title>
+	
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.31/dist/sweetalert2.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+
+</head>
+<body>
+	
+	<nav class="navbar sticky-top top">
+	  <div class="container">
+	    <a class="navbar-brand" href="#">
+	      <img src="images/logo.png" alt="Logo"  class="d-inline-block align-text-top">	      
+	    </a>
+	    
+	    
+	  </div>
+	</nav>
+
+	<section>
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-6 py-5">
+					<h5 class="txt-primary">Profile Details</h5>
+					<div class="profile_form_div p-4">
+						<form action="javascript:void(0)">
+							<div class="mb-3">
+							    <label for="name" class="form-label">Full Name*</label>
+							    <input type="text" class="form-control required fs-8" id="name" placeholder="Enter your name">	
+							</div>
+							<div class="mb-3">
+							    <label for="iam_a" class="form-label">I am a*</label>
+							    <select name="" id="iam_a" class="form-select required fs-8">
+							    	<option value="freelancer">Freelancer</option>
+							    	<option value="hr_company">Hr Company</option>
+							    </select>
+							</div>
+							<div class="mb-3">
+							    <label for="designation" class="form-label">Designation*</label>
+							    <input type="text" class="form-control required fs-8" id="designation" placeholder="Enter your Designation">	
+							</div>
+							<div class="mb-3">
+							    <label for="organization" class="form-label">Organization*</label>
+							    <input type="text" class="form-control required fs-8" id="organization" placeholder="Enter your Company Name">	
+							</div>
+
+							<!-- <div class="mb-3">
+							    <label for="official_email" class="form-label">Official Email*</label>
+							    <input type="email" class="form-control required fs-8" id="official_email" placeholder="Enter your Official Email">	
+							</div> -->
+							<div class="mb-3">
+							    <label for="mobile" class="form-label">Mobile Number*</label>
+							    <input type="text" class="form-control required fs-8" id="mobile" placeholder="Enter contact details">	
+							</div>
+							<div class="mb-3">
+							    <label for="total_exp_hiring" class="form-label">Total Experience in Hiring*</label>
+							    <input type="text" class="form-control required fs-8" id="total_exp_hiring" placeholder="Enter experience in years">	
+							</div>
+							<div class="mb-3">
+							    <label for="industri" class="form-label">Industry*</label>
+							    <select name="" id="industri" class="form-select required fs-8 select2">
+							    	
+							    </select>
+							</div>
+							<div>
+							 	<button class="btn btn-block text-white py-2 px-5 fw-m fs-s my-3 " id="save_employee_profile" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Saving...">Next</button>
+							 </div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	
+
+	<footer class="bg-primary">
+		<div class="container py-5">
+			<div class="row">
+				<div class="col-6">
+					<img src="images/logo.png" alt="">
+					<p class="fw-light mt-2">A specialised job portal focused on promoting <br>diversity, equity and inclusivity in the Indian job <br>market</p>
+					<ul class="fw-light f_links mt-5 list-unstyled">
+						<li><a href="privacy-policy.html">Privacy Policy</a></li>
+						<li><a href="terms-and-conditions.html">Terms & Conditions</a></li>
+						<li><a href="terms-of-use.html">Terms of Use</a></li>
+					</ul>
+				</div>
+				<div class="col-6 d-flex justify-content-between ps-5">
+					<div>
+						<!--<h5 class="mb-4">Product</h5>-->
+						<!--<ul class="fw-light list-unstyled">-->
+						<!--	<li><a href="">Digital Invoice</a></li>-->
+						<!--	<li><a href="">Insights</a></li>-->
+						<!--	<li><a href="">Reimbursements</a></li>-->
+						<!--	<li><a href="">Virtual Assistant</a></li>-->
+						<!--	<li><a href="">Artificial Intelligence</a></li>-->
+						<!--</ul>-->
+					</div>
+					<div>
+						<h5 class="mb-4">Resources</h5>
+						<ul class="fw-light list-unstyled">
+							<li><a href="/blog">Blog</a></li>
+							<!--<li><a href="">Pricing</a></li>-->
+							<!--<li><a href="">FAQ</a></li>-->
+							<!--<li><a href="">Events</a></li>-->
+							<!--<li><a href="">Ebook & Guide</a></li>-->
+						</ul>
+					</div>
+					<div>
+						<h5 class="mb-4">Follow Us</h5>
+						<ul class="fw-light list-unstyled">
+							<li><a href="https://www.linkedin.com/company/deijobsin">LinkedIn</a></li>
+							<!--<li><a href="">Twitter</a></li>-->
+							<li><a href="https://www.instagram.com/deijobs.in/">Instagram</a></li>
+							<li><a href="https://www.facebook.com/profile.php?id=61552768880052">Facebook</a></li>
+							<!--<li><a href="">YouTube</a></li>-->
+						</ul>
+					</div>
+
+				</div>
+			</div>
+			<div class="row mt-5">
+				<div class="col-12">
+					<p class="fw-light fs-10">© Deijobs 2023. All rights reserved.</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+
+	
+
+	<script src="js/jquery-3.7.0.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.31/dist/sweetalert2.all.min.js"></script>
+	<script src="js/api.js"></script>
+
+	<script>
+		$(document).ready(function(){
+  			var apiUrl = api_url+'/api/create-employee-profile';
+            var industryApiUrl = api_url+'/api/get-idustry-list';
+            var getCompanyNameSuggestion = api_url+'/api/get-compnay-name-suggestions';
+
+            $('.select2').select2();
+
+            $.ajax({
+                url: industryApiUrl,
+                type: "GET",
+                dataType: "json",
+                success: function(data) {
+                    industry_list = '<option value="">Select an option</option>'
+                    for(i=0; i<= data['data'].length-1; i++){
+                        industry_list = industry_list + '<option value='+data['data'][i]['name']+'>'+data['data'][i]['name']+'</option>'
+                    $("#industri").html(industry_list);
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error('Error:', textStatus, errorThrown);
+                }
+            });
+            $( "#organization" ).autocomplete({
+		      source: function( request, response ) {
+		        $.ajax( {
+		          url: getCompanyNameSuggestion,
+		          dataType: "json",
+		          method: "POST",
+		          data: {
+		            name: request.term
+		          },
+		          success: function( data ) {
+		            response($.map(data.data, function (item) {
+	                    return {
+	                        label: item.company_name,
+	                        value: item.company_name
+	                    };
+	                }));
+		          }
+		        } );
+		      },
+		      minLength: 0,
+		      select: function( event, ui ) {
+		        
+		      }
+		    } );
+
+            $("#save_employee_profile").click(function(){
+            	var error = false;
+            	$(".required").each(function(index, el) {
+            		if($(this).val() == ""){
+            			$(this).addClass('error_alert');
+            			error = true;
+            			return false;
+            		}else{
+            			$(this).removeClass('error_alert');
+            		}
+            	});
+            	if(error){
+            		return false;
+            	}
+
+                var postData = {
+                    "employeeId": localStorage.getItem('employeeId'),
+                    "iam_a": $("#iam_a").val(),
+                    "fullName": $("#name").val(),
+                    "mobile": $("#mobile").val(),
+                    "designation": $("#designation").val(),
+                    "organization": $("#organization").val(),
+                    "officialEmail": $("#official_email").val(),
+                    "landlineNo": "",
+                    "hiringExp": $("#total_exp_hiring").val(),
+                    "industry": $("#industri").val(),
+                };
+
+                $("#save_employee_profile").Button('loading');
+
+                $.ajax({
+                    url: apiUrl,
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(postData),
+                    success: function(data) {
+                        response_data = JSON.parse(data);
+                        // console.log(response_data);
+                        if(response_data["code"] != 200){
+                            // alert(response_data["message"]);
+                            Swal.fire(response_data["message"]);
+                        }else{
+                        	localStorage.setItem('name', $("#name").val());
+
+                            window.location.href = "agency_company_details.html";
+                        }
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.error('Error:', textStatus, errorThrown);
+                    },
+                    complete: function(){
+                    	$("#save_employee_profile").Button('reset');
+                    }
+                });
+
+            });
+		});			
+	</script>	
+</body>
+</html>

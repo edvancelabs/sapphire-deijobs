@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Dei Jobs Dashboard</title>
+	
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.31/dist/sweetalert2.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+
+</head>
+<body>
+	
+	<div id="head_nav"></div>
+
+	<section class="main_container">
+		<div class="container py-5 dash_layout">
+			<aside class="sidebar skeleton-qqky8cwf6lu" id="side_bar"></aside>
+			<main>
+				<a href="applicants.html" class="">< Back to applicants</a>
+				<div class="d-flex justify-content-between align-items-center my-4">
+				    <div>
+					    <h5 class="fw-semibold" id="role_name">Front End Developer</h5>
+				    </div>
+				    <!-- <div class="d-flex">
+					    <input type="text" placeholder="Seacrch" class="form-control me-4">
+					    <div><a href="#" id="toggle_filters"><i class="bi bi-sliders2 text-body-secondary fs-3"></i></a></div>
+				    </div> -->
+				</div>
+				
+				
+				<div class="row mb-5 dashboard_kpi">
+					<div class="col-3">
+						<div class="card_box app_status_filter" data-color="#0D9488">
+							<p>Accepted</p>
+							<img src="images/icon/accepted.png" alt="">
+							<h5 data-status_name="Accepted" id="accepted_count"></h5>
+						</div>
+					</div>
+					<div class="col-3">
+						<div class="card_box app_status_filter" data-color="#EA580C">
+							<p>On Hold</p>
+							<img src="images/icon/on_hold.png" alt="">
+							<h5 data-status_name="On Hold" id="hold_count"></h5>
+						</div>
+					</div>
+					<div class="col-3">
+						<div class="card_box app_status_filter" data-color="#4F46E5">
+							<p>In Process</p>
+							<img src="images/icon/in_process.png" alt="">
+							<h5  data-status_name="In Process" id="inprocess_count"></h5>
+						</div>
+					</div>
+					<div class="col-3">
+						<div class="card_box app_status_filter" data-color="#65A30D">
+							<p>Shortlisted</p>
+							<img src="images/icon/shortlisted.png" alt="">
+							<h5 data-status_name="Shortlisted"  id="shortlisted_count"></h5>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="row mb-5">
+					<div class="col-12">
+
+						<div class="d-flex justify-content-between align-items-center mb-4">
+						    <div>
+							    <p class="fw-bold fs-8 mb-0">Total Applicants (<span id="total_applicant">100</span>)</p>
+						    </div>
+						    <div class="d-flex">
+							    <input type="text" placeholder="Seacrch" class="form-control me-4" id="search_by">
+							    <div><a href="javascript:void(0)" id="toggle_filters"><i class="bi bi-sliders2 text-body-secondary fs-3"></i></a></div>
+						    </div>
+						</div>
+						<div class="d-flex mb-4 big_card justify-content-between d-none filter_line">
+						    <div class="">
+						    	<div class="row g-3 align-items-center">
+								  <div class="col-auto">
+								    <label for="fltr_name" class="col-form-label">Candidate Name</label>
+								  </div>
+								  <div class="col-auto">
+								    <input type="text" id="fltr_name" class="form-control bg-gray fltr_inputs" >
+								  </div>
+								  
+								</div>
+						    </div>
+						    <div class="">
+							    <div class="row g-3 align-items-center">
+								  <div class="col-auto">
+								    <label for="fltr_category" class="col-form-label">Category</label>
+								  </div>
+								  <div class="col-auto">
+								    <select name="fltr_category" id="fltr_category" class="form-select fs-8 bg-gray fltr_inputs">
+								    	<option value="">Select an option</option>
+								    	<option value="Women">Women</option>
+								    	<option value="Pwd">Pwd</option>
+								    	<option value="LGBTQI+">LGBTQI+</option>
+								    	<option value="Veterans">Veterans</option>
+								    	<option value="Retirees">Retirees</option>							    	
+								    </select>
+								  </div>
+								  
+								</div>
+						    </div>
+						    <div class="">
+						    	<div class="row g-3 align-items-center">
+								  <div class="col-auto">
+								    <label for="fltr_date" class="col-form-label">Date</label>
+								  </div>
+								  <div class="col-auto">
+								    <input type="date" id="fltr_date" class="form-control bg-gray fltr_inputs" >
+								  </div>
+								  
+								</div>
+						    </div>
+						    <div>
+						    	<button id="filter_applicant" class="btn btn-block w-100 text-white" type="button">Submit</button>
+						    </div>
+						    
+						</div>
+						<div class="big_card applicants_screen nrml">
+
+							<ul id="candidate_list" class="list-unstyled applicants_list"></ul>
+
+							
+						</div>
+					</div>
+				</div>
+			</main>
+		</div>
+	</section>
+
+
+	<div id="footer_div"></div>
+
+
+	
+
+	<script src="js/jquery-3.7.0.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.31/dist/sweetalert2.all.min.js"></script>
+	<script src="js/api.js"></script>
+	<script>
+		$(document).ready(function(){
+			$("#menu_applicants").addClass('active');
+
+
+	        var get_applicant_role_data_url = api_url+'/api/get-role-total-data';
+	        var applicationStatusAPi = api_url+'/api/employee-request-action';
+	        var applicantFilterApi = api_url+'/api/get-employee-action-filtered-data';
+
+	        
+
+	        const params = new URLSearchParams(window.location.search);
+
+	        var postData = {
+	                "employeeId": localStorage.getItem('employeeId'),
+	                "jobId": params.get("jid")
+	        };
+	        $("#role_name").html(params.get("jt"));
+	        $.ajax({
+	            url: get_applicant_role_data_url,
+	            type: 'POST',
+	            contentType: 'application/json',
+	            data: JSON.stringify(postData),
+	            success: function(data) {
+	                response_data = JSON.parse(data);
+	                console.log(response_data['data']);
+	                if(response_data['code'] == 200){
+	                    $("#accepted_count").html(response_data['data']['acceptedUserCount'])
+	                    $("#inprocess_count").html(response_data['data']['processUserCount'])
+	                    $("#hold_count").html(response_data['data']['holdUserCount'])
+	                    $("#shortlisted_count").html(response_data['data']['shortlistedUserCount']);
+
+	                    $("#total_applicant").html(response_data.data.totalApplicantCount);
+
+
+
+	                    var app_data = response_data['data']['applicantsData'];
+	                    populate_list(app_data);
+
+
+	                }
+	            },
+	            error: function(jqXHR, textStatus, errorThrown) {
+	                console.error('Error:', textStatus, errorThrown);
+	            }
+	        });
+
+	        function populate_list(app_data){
+	        	console.log(app_data);
+	        	$("#candidate_list").html(" ");
+	               //      $(app_data).each(function(index, el) {
+	               //      	var mobile = '';
+	               //      	if(el.mobile != ""){
+	               //      		mobile = '<a href="https://wa.me/+91'+el.mobile+'"><img src="images/icon/whatsapp.png"></a>';
+	               //      	}
+	               //      	var email = '';
+	               //      	// if(el.email != ""){
+	               //      	// 	email = '<a href="mailto:'+el.email+'"><i class="bi bi-envelope-at-fill txt-primary fs-5 ms-2"></i></a>';
+	               //      	// }
+
+	               //      	var image = 'images/default-user.png';
+                //     		if(el.photo){
+                //     			image = el.photo;
+                //     		}
+
+
+	               //      	var applicant_list = '<tr>'+
+										      // '<td>'+
+										      // 	'<div class="d-flex">'+
+										      // 		'<img src="'+image+'" alt="" class="me-3 img_icn">'+
+										      // 		'<p class="fw-semibold mb-0 lh-1">'+el.name+''+
+										      // 			'<br><span class="fw-light fs-10">'+el.email+'</span>'+
+	               //                                  '</p>'+
+										      // 	'</div>'+
+										      // '</td>'+
+										      // '<td>'+el.current_job+','+ el.company_name+'</td>'+
+										      // '<td id="action_status'+el.id+'">'+el.employee_action+'</td>'+
+										      // '<td>'+el.gender +','+ el.dni_category+'</td>'+
+										      // '<td>'+el.posted+'</td>'+
+										      // '<td class="d-flex">'+mobile+email+'<div class="dropdown">'+
+                //                     '<i class="bi bi-three-dots-vertical fs-5 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></i>'+
+
+                //                 '<ul class="dropdown-menu" data-aid="'+el.id+'"><li><a class="dropdown-item update_status" data-status="Accepted" href="#">Accept</a></li><li><a class="dropdown-item update_status" data-status="Reject" href="#">Reject</a></li><li><a class="dropdown-item update_status" data-status="On Hold" href="#">On Hold</a></li><li><a class="dropdown-item update_status" data-status="In Process" href="#">In Process</a></li><li><a class="dropdown-item update_status" data-status="Shortlisted" href="#">Shortlisted</a></li>'+
+                //                 '</ul>'+
+                //             '</div></td></tr>';
+                //             $("#candidate_list").append(applicant_list);
+	               //      });
+	            a_data = app_data;
+            	$(a_data).each(function(index, el) {
+            		var image = 'images/default-user.png';
+            		if(el.photo){
+            			image = el.photo;
+            		}
+            		var sk_p = '';
+            		if(el.skills != null){
+            			skills = el.skills.split(',');
+            			
+            			$(skills).each(function(ind, sk) {
+            				sk_p += '<span>'+sk+'</span>';
+            			});
+            		}
+
+            		var pf_loc = '';
+            		if(el.preferred_location != null){
+            			preferred_location = el.preferred_location.split(',');
+            			
+            			$(preferred_location).each(function(ind, pf) {
+            				pf_loc += '<span>'+pf+'</span>';
+            			});
+            		}
+            		var age = '';
+            		if(el.dob){
+            			age = new Date().getYear() - new Date(el.dob).getYear();
+            		}
+            		var edu = '';
+            		if(el.studentEducation.length > 0){
+            			edu = el.studentEducation[0].degree_id+', '+el.studentEducation[0].university_id+' ('+el.studentEducation[0].passing_year+')';
+            		}
+						var applicants_list = '<li class="d-flex p-2"><div class="me-3"><img src="'+image+'" class="img_icn"></div><div><div class="d-flex justify-content-between align-items-center"><h4 class="txt-primary user_name fs-5 mb-0">'+el.name+' <span>('+el.gender+', '+age+')</span></h4><div class="fs-7 d-flex"><a href="candidate_profile.html?cid='+el.candidate_id+'"><i class="bi bi-eye"></i></a><a href="mailto:'+el.email+'"><i class="bi bi-envelope"></i></a><a href="tel:'+el.mobile+'"><i class="bi bi-telephone"></i></a><a href="https://wa.me/'+el.mobile+'"><i class="bi bi-whatsapp"></i></a>'+
+							'<div class="action_btn1"><div class="dropdown"><span class="ms-4" id="action_status'+el.user_job_id+'">'+el.employee_action+'</span><i class="bi bi-three-dots-vertical fs-5 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></i><ul class="dropdown-menu" data-aid="'+el.user_job_id+'"><li><a class="dropdown-item update_status" data-status="Accepted" href="#">Accept</a></li><li><a class="dropdown-item update_status" data-status="Rejected" href="#">Reject</a></li><li><a class="dropdown-item update_status" data-status="On Hold" href="#">On Hold</a></li><li><a class="dropdown-item update_status" data-status="In Process" href="#">In Process</a></li><li><a class="dropdown-item update_status" data-status="Shortlisted" href="#">Shortlisted</a></li></ul></div></div>'+
+
+						'</div></div><div class="mt-2"><span class="me-4"><i class="bi bi-briefcase-fill"></i> '+el.experience+' Year(s)</span><span class="me-4"><i class="bi bi-wallet-fill"></i> '+el.salary+'</span><span class="me-4"><i class="bi bi-geo-alt-fill"></i> '+el.location+'</span><span class=""><i class="bi bi-people-fill"></i> '+el.dni_category+'</span></div><div class="row mt-3"><div class="col-3 label">Current</div><div class="col-9 label-val">'+el.current_company+'</div><div class="col-3 label">Previous</div><div class="col-9 label-val">'+el.previous_company+'</div><div class="col-3 label">Education</div><div class="col-9 label-val">'+edu+'</div><div class="col-3 label">Pref. Location</div><div class="col-9 label-val">'+pf_loc+'</div><div class="col-3 label">Skills</div><div class="col-9 label-val skills_pills">'+sk_p+'</div></div></div></li>';
+							// setTimeout(function(){
+		                    $("#candidate_list").append(applicants_list);
+		                        		// },2000);
+
+                        		
+                        });
+	        }
+	        $(document).on('click', '.update_status', function(event) {
+            	event.preventDefault();
+            	var status = $(this).data('status');
+            	var user_job_id = $(this).parents('.dropdown-menu').data('aid');
+            	var old_status = $("#action_status"+user_job_id).text();
+            	console.log(user_job_id+" "+status+" <-"+old_status);
+
+            	$.ajax({
+                    url: applicationStatusAPi,
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({"userJobId": user_job_id, "action": status}),
+                    success: function(data) {
+                        response_data = JSON.parse(data);
+                        if(response_data['code'] == 200){
+                           // alert("update success");
+                           Swal.fire("Update success!");
+                           $('[data-status_name="'+old_status+'"]').text($('[data-status_name="'+old_status+'"]').text() - 1 );
+
+                           $('[data-status_name="'+status+'"]').text($('[data-status_name="'+status+'"]').text()/1 + 1 );
+
+                           $("#action_status"+user_job_id).html(status);
+                        }else{
+                        	Swal.fire(response_data["message"]);
+                            // alert(response_data['message']);
+                        }
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.error('Error:', textStatus, errorThrown);
+                    }
+                });
+
+
+            });
+
+
+            $(document).on('click', '.app_status_filter', function(event) {
+            	event.preventDefault();
+            	var obj = $(this);
+            	var status = obj.find('h5').data('status_name');
+            	$('.app_status_filter').css('background','#fff');
+            	$('.app_status_filter').removeClass('white_font');
+
+            	$.ajax({
+                    url: applicantFilterApi,
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({"employeeId": localStorage.getItem('employeeId'),"jobId": params.get("jid"), "type": status,"candidateName":"","category":"","postedDate":""}),
+                    success: function(data) {
+                        response_data = JSON.parse(data);
+                        if(response_data['code'] == 200){
+                        	populate_list(response_data['data']);
+                           	obj.css('background',obj.data('color'));
+                           	obj.addClass('white_font');
+                        }else{
+                            // alert(response_data['message']);
+                            Swal.fire(response_data["message"]);
+                        }
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.error('Error:', textStatus, errorThrown);
+                    }
+                });
+
+
+            });
+
+            $(document).on('click', '#filter_applicant', function(event) {
+            	event.preventDefault();
+            	var obj = $(this);
+            	// var status = obj.find('h5').data('status_name');
+            	// $('.app_status_filter').css('background','#fff');
+            	// $('.app_status_filter').removeClass('white_font');
+
+            	var status_type = $('.app_status_filter.white_font h5').data('status_name');
+            	if(!status_type){
+            		status_type = "";
+            	}
+
+            	$.ajax({
+                    url: applicantFilterApi,
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({"employeeId": localStorage.getItem('employeeId'),"jobId": params.get("jid"), "type": status_type,"candidateName":$("#fltr_name").val(),"category":$("#fltr_category").val(),"postedDate": $("#fltr_date").val()}),
+                    success: function(data) {
+                        response_data = JSON.parse(data);
+                        if(response_data['code'] == 200){
+                        	populate_list(response_data['data']);
+                           
+                        }else{
+                            // alert(response_data['message']);
+                            Swal.fire(response_data["message"]);
+                        }
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.error('Error:', textStatus, errorThrown);
+                    }
+                });
+
+
+            });
+
+            
+
+            $("#toggle_filters").on("click",function(){
+            	// $('.fltr_inputs').val("");
+            	$(".filter_line").toggleClass('d-none');            	
+            });
+
+	       
+
+
+	        get_data();
+	        function get_data(search_txt=''){
+	        	var status_type = $('.app_status_filter.white_font h5').data('status_name');
+            	if(!status_type){
+            		status_type = "";
+            	}
+            	if(search_txt == ""){
+            		search_txt = $("#fltr_name").val();
+            	}
+
+
+            	$.ajax({
+                    url: applicantFilterApi,
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({"employeeId": localStorage.getItem('employeeId'),"jobId": params.get("jid"), "type": status_type,"candidateName": search_txt ,"category":$("#fltr_category").val(),"postedDate": $("#fltr_date").val()}),
+                    success: function(data) {
+                        response_data = JSON.parse(data);
+                        if(response_data['code'] == 200){
+                        	populate_list(response_data['data']);
+                           
+                        }else{
+                            // alert(response_data['message']);
+                            Swal.fire(response_data["message"]);
+                        }
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.error('Error:', textStatus, errorThrown);
+                    }
+                });
+
+		    }
+
+
+            var timer;
+			$("#search_by").keyup(function() {
+			    clearTimeout(timer);
+			    timer = setTimeout(function() {
+			        var search_txt = $('#search_by').val();
+			        if (search_txt.length >= 3 || search_txt.length == 0) {   
+			            get_data(search_txt);
+			        }
+			    }, 250);
+			});
+
+
+            
+	    });		
+	</script>	
+</body>
+</html>

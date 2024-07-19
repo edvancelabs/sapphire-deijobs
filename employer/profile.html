@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Dei Jobs Dashboard</title>
+	
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.31/dist/sweetalert2.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+
+</head>
+<body>
+	
+	<div id="head_nav"></div>
+
+	<section class="main_container">
+		<div class="container py-5 dash_layout">
+			<aside class="sidebar skeleton-qqky8cwf6lu" id="side_bar"></aside>
+			<main>
+				<div class="row mb-3">
+					<div class="col-12">
+						<div class="big_card d-flex  justify-content-between align-items-center">
+							<div class="profile_photo  d-flex align-items-center position-relative">
+								<img src="images/default-user.png" alt="">
+
+								<a href="javascript:void(0)" class="edit_icn"><i class="bi bi-pencil-square"></i>
+									<input type="file" id="profile_upload" onchange="encodeImageFileAsURL(this)">
+								</a>
+
+
+								<div class="ms-4">
+									<h5 class="mb-1 user_name"></h5>
+									<p class="mb-0 fs-9 text-body-secondary" id="user_email"></p>
+								</div>
+							</div>
+							
+							<div class="d-flex">
+								<button id="overview" class="btn btn-primary w-50 me-3 active" type="button">Overview</button>
+								<button id="subscriptions" class="col-6 btn btn-primary w-50" type="button">Subscriptions</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row profile_frm mb-5">
+					<div class="col-6">
+						
+						<div class="big_card">
+							<p class="f-8 fw-medium">Platfrom Settings</p>
+							<div>
+								<p class="fs-9 text-body-secondary">Account</p>
+								<ul class="list-unstyled">
+									<li>
+										<div class="form-check form-switch">
+										  <input class="form-check-input me-3 plat_sett_switch" type="checkbox" role="switch" id="job_apply_notification" >Email me when someone is applying for job
+										</div>
+									</li>
+									<li>
+										<div class="form-check form-switch">
+										  <input class="form-check-input me-3 plat_sett_switch" type="checkbox" role="switch" id="post_answer_notification" >Email me when someone answers on my post
+										</div>
+									</li>
+									<li>
+										<div class="form-check form-switch">
+										  <input class="form-check-input me-3 plat_sett_switch" type="checkbox" role="switch" id="someone_mention" >Email me when someone mentions me
+										</div>
+									</li>
+									
+								</ul>
+							</div>
+							<div>
+								<p class="fs-9 text-body-secondary">Account</p>
+								<ul class="list-unstyled">
+									<li>
+										<div class="form-check form-switch">
+										  <input class="form-check-input me-3 plat_sett_switch" type="checkbox" role="switch" id="new_launch" >New launches and projects
+										</div>
+									</li>
+									<li>
+										<div class="form-check form-switch">
+										  <input class="form-check-input me-3 plat_sett_switch" type="checkbox" role="switch" id="plan_subscription" >Subscribe to Plans
+										</div>
+									</li>
+									<li>
+										<div class="form-check form-switch">
+										  <input class="form-check-input me-3 plat_sett_switch" type="checkbox" role="switch" id="newsletter_subscription" >Subscribe to newsletter
+										</div>
+									</li>
+									
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="col-6">
+						
+						<div class="big_card" style="height:100%;position:relative;">
+							<div id="otp_screen" style="display:none;width: 100%;height: 100%;position: absolute;background: #fff;opacity: 0.9;z-index: 999;left: 0;top: 0;">
+        						<a style="float: right;margin-right: 20px;margin-top: 20px;" class="otp_screen_close">Close</a>
+        						<div style="width: 200px;margin: 0 auto;margin-top: 200px;    text-align: center;">
+        							<input type="number" id="otp_input" placeholder="OTP" style="width: 200px;height: 40px;text-align: center;">
+        							<button id="verify_otp" class="btn btn-block w-50 text-white" type="button" style="margin-top: 20px;">Verify</button>
+        						</div>
+    						</div>
+							<p class="fs-8 fw-medium">Profile Information  
+								<a href="#" class="float-end edit_btn_icon">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+								  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+								  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+								</svg>
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-floppy-fill d-none" viewBox="0 0 16 16">
+								  <path d="M0 1.5A1.5 1.5 0 0 1 1.5 0H3v5.5A1.5 1.5 0 0 0 4.5 7h7A1.5 1.5 0 0 0 13 5.5V0h.086a1.5 1.5 0 0 1 1.06.44l1.415 1.414A1.5 1.5 0 0 1 16 2.914V14.5a1.5 1.5 0 0 1-1.5 1.5H14v-5.5A1.5 1.5 0 0 0 12.5 9h-9A1.5 1.5 0 0 0 2 10.5V16h-.5A1.5 1.5 0 0 1 0 14.5v-13Z"/>
+								  <path d="M3 16h10v-5.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5V16Zm9-16H4v5.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5V0ZM9 1h2v4H9V1Z"/>
+								</svg>
+								</a>	 
+							</p>
+							<div class=" frm_inpts">
+								<textarea name="" id="bio" cols="30" rows="2" placeholder="Write your bio" readonly class="form-control form-control-plaintext edit mb-3 fs-10"></textarea>
+								  <div class="mb-3 row">
+								    <label for="full_name" class="col-sm-3 col-form-label">Full Name:</label>
+								    <div class="col-sm-7">
+								      <input type=" text" readonly class="form-control form-control-plaintext edit" id="full_name" value="">
+								    </div>
+								  </div>
+								  <div class="mb-3 row">
+								    <label for="role" class="col-sm-3 col-form-label">Role:</label>
+								    <div class="col-sm-7">
+								      <input type="text"  readonly class="form-control form-control-plaintext edit" id="role" value="">
+								    </div>
+								  </div>
+								  <div class="mb-3 row">
+								    <label for="mobile" class="col-sm-3 col-form-label">Mobile:</label>
+								    <div class="col-sm-6">
+								      <input type="text"  readonly class="form-control form-control-plaintext edit" id="mobile" value="">
+								    </div>
+								    <div class="col-sm-3" id="mobile_verify_status">
+								    	
+								    </div>
+								  </div>
+								  <div class="mb-3 row">
+								    <label for="email" class="col-sm-3 col-form-label">Email:</label>
+								    <div class="col-sm-6">
+								      <input type="email" readonly class="form-control form-control-plaintext" id="email" value="">
+								    </div>
+								    <div class="col-sm-3" id="email_verify_status">
+								    	
+								    </div>
+								  </div>
+								  <!-- <div class="mb-3 row">
+								    <label for="text" class="col-sm-2 col-form-label">Location</label>
+								    <div class="col-sm-10">
+								      <input type="text"  readonly class="form-control" id="text">
+								    </div>
+								  </div> -->
+
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row mb-5">
+					<div class="col-12">
+
+						<div class="d-flex justify-content-between align-items-center mb-4 px-3">
+						    <div>
+							    <p class="fw-bold fs-8 mb-0 ">Archived Jobs/ Inactive Jobs</p>
+						    </div>
+						    <div class="d-flex">
+							    <input type="text" placeholder="Search" class="form-control me-4">
+							    <div><a href="javascript:void(0)" id="toggle_filters"><i class="bi bi-sliders2 text-body-secondary fs-3"></i></a></div>
+						    </div>
+						</div>
+						<div class="d-flex mb-4 big_card justify-content-between d-none filter_line">
+						    <div class="">
+						    	<div class="row g-3 align-items-center">
+								  <div class="col-auto">
+								    <label for="fltr_jobtitle" class="col-form-label">Job Title</label>
+								  </div>
+								  <div class="col-auto">
+								    <input type="text" id="fltr_jobtitle" class="form-control bg-gray" >
+								  </div>
+								  
+								</div>
+						    </div>
+						    <div class="">
+							    <div class="row g-3 align-items-center">
+								  <div class="col-auto">
+								    <label for="fltr_category" class="col-form-label">Category</label>
+								  </div>
+								  <div class="col-auto">
+								    <select name="fltr_category" id="fltr_category" class="form-select fs-8 bg-gray">
+								    	<option value="">Select an option</option>
+								    	<option value="Women">Women</option>
+								    	<option value="Pwd">Pwd</option>
+								    	<option value="LGBTQI+">LGBTQI+</option>
+								    	<option value="Veterans">Veterans</option>
+								    	<option value="Retirees">Retirees</option>
+								    	
+								    </select>
+								  </div>
+								  
+								</div>
+						    </div>
+						    <div class="">
+						    	<div class="row g-3 align-items-center">
+								  <div class="col-auto">
+								    <label for="fltr_date" class="col-form-label">Date Posted</label>
+								  </div>
+								  <div class="col-auto">
+								    <input type="date" id="fltr_date" class="form-control bg-gray" >
+								  </div>
+								  
+								</div>
+						    </div>
+						    <div>
+						    	<button id="filter_applicant" class="btn btn-block w-100 text-white" type="button">Submit</button>
+						    </div>
+						    
+						</div>
+						<div class="big_card applicants_screen nrml">
+
+							<div class="table-responsive" style="    min-height: 300px;">
+								<table class="table">
+									<thead>
+									    <tr>
+									      <th class="col">Job List</th>
+									      <!-- <th class="col">Current Job</th> -->
+									      <th class="col">Status</th>
+									      <th class="col">Category</th>
+									      <th class="col">posted</th>
+									      <th class="col">Action</th>
+									    </tr>
+									</thead>
+									<tbody id="jobpost_list" class="applicants_list">
+										
+									</tbody>
+								</table>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
+		</div>
+	</section>
+
+
+	<div id="footer_div"></div>
+
+
+	
+
+	<script src="js/jquery-3.7.0.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.31/dist/sweetalert2.all.min.js"></script>
+	<script src="js/api.js"></script>
+	<script>
+		var uploadPhoto = api_url+'/api/upload-image';
+		var base64_image = ""
+	        function encodeImageFileAsURL(element) {
+	            var file = element.files[0];
+	            var reader = new FileReader();
+	            reader.onloadend = function() {
+	                imagebase64 = reader.result;
+	                // console.log(imagebase64);
+	                var base64result = reader.result.split(',')[1];
+	                base64_image = base64result;
+	                var old_photo = $(".profile_photo img").attr('src');
+	                $(".profile_photo img").attr('src',imagebase64);
+	                // $("#file_preview").addClass('set_img_preview');
+
+	                var postpacket = {
+						"employeeId": localStorage.getItem('employeeId'),
+						"image": base64_image						
+					}
+					$.ajax({
+		                url: uploadPhoto,
+		                type: 'POST',
+		                contentType: 'application/json',
+		                data: JSON.stringify(postpacket),
+		                success: function(data) {
+		                    response_data = JSON.parse(data);
+		                    if(response_data['code'] != 200){
+		                        Swal.fire(response_data["message"]);
+		                        $(".profile_photo img").attr('src',old_photo);
+		                    }
+		                },
+		                error: function(jqXHR, textStatus, errorThrown) {
+		                    console.error('Error:', textStatus, errorThrown);
+		                }
+		            });
+	            }
+	            reader.readAsDataURL(file);
+	        }
+		$(document).ready(function(){
+
+			var getInactiveJobs = api_url+'/api/get-inactive-jobs';
+			var getProfileDetails = api_url+ '/api/get-employee-details';
+			var masterDataComplete = api_url+'/api/get-masters-details';
+			var updateProfile = api_url+'/api/update-profile-details';
+			var addPlatformSetting = api_url+'/api/add-platform-setting';
+			
+			var verify_mobile_1 = api_url+'/api/employee-mobile-verificaction-send-otp';
+			var verify_otp = api_url+'/api/employee-mobile-verificaction';
+
+			
+			
+			$(".plat_sett_switch").on("change",function(){
+				var obj = $(this);
+				var postpacket = {
+					"employeeId": localStorage.getItem('employeeId'),
+					"key": obj.attr('id'),
+					"value": obj.prop('checked')
+				}
+				$.ajax({
+	                url: addPlatformSetting,
+	                type: 'POST',
+	                contentType: 'application/json',
+	                data: JSON.stringify(postpacket),
+	                success: function(data) {
+	                    response_data = JSON.parse(data);
+	                    if(response_data['code'] != 200){
+	                        // alert(response_data['message']);
+	                        Swal.fire(response_data["message"]);
+	                        obj.prop('checked',!obj.prop('checked'));
+	                    }
+	                },
+	                error: function(jqXHR, textStatus, errorThrown) {
+	                    console.error('Error:', textStatus, errorThrown);
+	                }
+	            });
+
+
+			});
+			$.ajax({
+                url: getProfileDetails,
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({"employeeId": localStorage.getItem('employeeId')}),
+                success: function(data) {
+                    response_data = JSON.parse(data);
+                    if(response_data['code'] == 200){
+                    	
+                    	data = response_data.data;
+                    	console.log(data);
+                    	$('.user_name').html(data.name);
+                    	$('#user_email').html(data.email);
+                    	$('#full_name').val(data.name);
+                    	$('#mobile').val(data.mobile);
+                    	$('#email').val(data.email);
+                    	$('#role').val(data.designation);
+			$('#bio').val(data.bio);
+
+
+                    	if(data.job_apply_notification){
+                    		$("#job_apply_notification").prop('checked',true);
+                    	}
+                    	if(data.new_launch){
+                    		$("#new_launch").prop('checked',true);
+                    	}
+                    	if(data.newsletter_subscription){
+                    		$("#newsletter_subscription").prop('checked',true);
+                    	}
+                    	if(data.plan_subscription){
+                    		$("#plan_subscription").prop('checked',true);
+                    	}
+                    	if(data.post_answer_notification){
+                    		$("#post_answer_notification").prop('checked',true);
+                    	}
+                    	if(data.someone_mention){
+                    		$("#someone_mention").prop('checked',true);
+                    	}
+
+                    	if(data.email_verification == "verified"){
+                    		$("#email_verify_status").html('<span>Verified <i class="bi bi-check-circle ms-2"></i></span>');
+                    	}else{
+                    		$("#email_verify_status").html('<span>Verify <i class="bi bi-exclamation-triangle ms-2"></i></span>');
+                    	}
+
+                    	if(data.mobile_verify_status == "verified"){
+                    		$("#mobile_verify_status").html('<span>Verified <i class="bi bi-check-circle ms-2"></i></span>');
+                    	}else{
+                    		$("#mobile_verify_status").html('<span id="verify_mobile">Verify <i class="bi bi-exclamation-triangle ms-2"></i></span>');
+                    	}
+
+                    	if(data.photo){
+                    		$('.profile_photo img').attr('src',data.photo);
+                    	}
+
+
+
+                    	
+                    }else{
+                        // alert(response_data['message']);
+                        Swal.fire(response_data["message"]);
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error('Error:', textStatus, errorThrown);
+                }
+            });
+
+			$.ajax({
+                url: getInactiveJobs,
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({"employeeId": localStorage.getItem('employeeId'),"jobTitle": $("#fltr_jobtitle").val(), "limit": 100,"offset":0,"category":$("#fltr_category").val(),"postedDate": $("#fltr_date").val()}),
+                success: function(data) {
+                    response_data = JSON.parse(data);
+                    if(response_data['code'] == 200){
+                    	console.log(response_data);
+                    	// populate_list(response_data['data']);
+                    	data = response_data.jobPostsDetails;
+                    	$("#jobpost_list").html("");
+                    	$(data).each(function(index, el) {
+                    		$("#jobpost_list").append('<tr><td>'+el.job_title+'</td><td>'+el.job_status+'</td><td>'+el.preference_category+'</td><td>'+el.posted+'</td><td><i class="bi bi-eye fs-6 me-4 view_job" data-jid="'+el.id+'"></i><i class="bi bi-pencil-square fs-6 edit_job" data-jid="'+el.id+'"></i></td></tr>');
+                    	});
+
+                       
+                    }else{
+                        // alert(response_data['message']);
+                        Swal.fire(response_data["message"]);
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error('Error:', textStatus, errorThrown);
+                }
+            });
+
+            $( "#role" ).autocomplete({
+		      source: function( request, response ) {
+		        $.ajax( {
+		          url: masterDataComplete,
+		          dataType: "json",
+		          method: "POST",
+		          data: {
+		            name: request.term,
+		            tableName: "job_roles"
+		          },
+		          success: function( data ) {
+		            response($.map(data.data, function (item) {
+	                    return {
+	                        label: item.name,
+	                        value: item.name
+	                    };
+	                }));
+		          }
+		        } );
+		      },
+		      minLength: 0,
+		      select: function( event, ui ) {
+		        
+		      }
+		    });
+
+
+			$(document).on('click', '.edit_btn_icon', function(event) {
+				event.preventDefault();
+
+				
+				if($('.edit_btn_icon .bi-pencil-square').hasClass('d-none')){
+
+					$.ajax({
+		                url: updateProfile,
+		                type: 'POST',
+		                contentType: 'application/json',
+		                data: JSON.stringify({
+		                		"employeeId": localStorage.getItem('employeeId'),
+		                		"name": $('#full_name').val(),
+		                		"mobile": $('#mobile').val(),
+		                		"email": $('#email').val(),
+		                		"role":$('#role').val(),           		
+						"bio":$('#bio').val(),
+		                	}),
+		                success: function(data) {
+		                    response_data = JSON.parse(data);
+		                    if(response_data['code'] == 200){
+		                    	console.log(response_data);
+		                    	Swal.fire("Update success!");
+
+		                    	change_edit();
+		                       
+		                    }else{
+		                        // alert(response_data['message']);
+		                        Swal.fire(response_data["message"]);
+		                    }
+		                },
+		                error: function(jqXHR, textStatus, errorThrown) {
+		                    console.error('Error:', textStatus, errorThrown);
+		                }
+		            });
+
+
+				}else{
+					change_edit();
+				}
+
+				
+
+			});
+			$("#toggle_filters").on("click",function(){
+            	$(".filter_line").toggleClass('d-none');
+            });
+
+            function change_edit(){
+            	$('.frm_inpts .edit').toggleClass('form-control-plaintext');
+				if($('.frm_inpts .edit').prop('readonly')){
+					$('.frm_inpts .edit').prop('readonly',false);
+				}else{
+					$('.frm_inpts .edit').prop('readonly',true);
+				}
+				$('.edit_btn_icon .bi-pencil-square').toggleClass('d-none');
+				$('.edit_btn_icon .bi-floppy-fill').toggleClass('d-none');
+            }
+
+
+
+			
+
+
+
+			$(document).on('click', '.view_job', function(event) {
+				var jid = $(this).data('jid');
+				location.assign('job_page.html?jid='+jid+'&jtype=view');
+			});
+
+			$(document).on('click', '.edit_job', function(event) {
+				var jid = $(this).data('jid');
+				location.assign('job_page.html?jid='+jid+'&jtype=edit');
+			});
+
+			$(document).on('click', '#filter_applicant', function(event) {
+            	event.preventDefault();
+            	var obj = $(this);
+            	
+
+            	$.ajax({
+                    url: getInactiveJobs,
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({"employeeId": localStorage.getItem('employeeId'),"jobTitle": $("#fltr_jobtitle").val(), "limit": 100,"offset":0,"category":$("#fltr_category").val(),"postedDate": $("#fltr_date").val()}),
+                    success: function(data) {
+                        response_data = JSON.parse(data);
+                        if(response_data['code'] == 200){
+                        	console.log(response_data);
+                        	// populate_list(response_data['data']);
+                        	data = response_data.jobPostsDetails;
+                        	$("#jobpost_list").html("");
+                        	$(data).each(function(index, el) {
+                        		$("#jobpost_list").append('<tr><td>'+el.job_title+'</td><td>'+el.job_status+'</td><td>'+el.preference_category+'</td><td>'+el.posted+'</td>Action<td></tr>');
+                        	});
+
+                           
+                        }else{
+                            // alert(response_data['message']);
+                            Swal.fire(response_data["message"]);
+                        }
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.error('Error:', textStatus, errorThrown);
+                    }
+                });
+
+
+            });
+
+
+		$(document).on('click', '#verify_mobile', function(event) {
+            	event.preventDefault();
+            	var obj = $(this);
+            	
+
+            	$.ajax({
+                    url: verify_mobile_1,
+                    type: 'POST',
+                    contentType: 'application/json',
+	 	    data: JSON.stringify({"employeeId": localStorage.getItem('employeeId')}),
+                    success: function(data) {
+                        response_data = JSON.parse(data);
+                        if(response_data['code'] == 200){
+                        	console.log(response_data);
+                        	//alert("show otp input");
+				$("#otp_screen").show();
+                           
+                        }else{
+                            // alert(response_data['message']);
+                            Swal.fire(response_data["message"]);
+                        }
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.error('Error:', textStatus, errorThrown);
+                    }
+                });
+
+
+            });
+
+            $(document).on('click', '#verify_otp', function(event) {
+            	event.preventDefault();
+            	var obj = $(this);
+            	
+
+            	$.ajax({
+                    url: verify_otp,
+                    type: 'POST',
+                    contentType: 'application/json',
+		    data: JSON.stringify({"employeeId": localStorage.getItem('employeeId'),"otp":$("#otp_input").val()}),
+                    success: function(data) {
+                        response_data = JSON.parse(data);
+                        if(response_data['code'] == 200){
+                        	console.log(response_data);
+                        	//alert("show otp input");
+                           
+                        }else{
+                            // alert(response_data['message']);
+                            Swal.fire(response_data["message"]);
+                        }
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.error('Error:', textStatus, errorThrown);
+                    }
+                });
+
+
+            });
+
+	    $(document).on('click', '.otp_screen_close', function(event) {
+            	event.preventDefault();
+            	$("#otp_screen").hide();
+            });
+
+    	});		
+	</script>	
+</body>
+</html>

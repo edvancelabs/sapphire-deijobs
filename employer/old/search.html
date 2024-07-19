@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Dei Jobs Dashboard</title>
+	
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.31/dist/sweetalert2.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<style>
+		.ui-menu{margin-top:10px;}
+	</style>
+</head>
+<body>
+	
+	<div id="head_nav"></div>
+
+	<section class="main_container">
+		<div class="container py-5 dash_layout">
+			<aside class="sidebar skeleton-qqky8cwf6lu" id="side_bar"></aside>
+			<main>
+				<div class="row mb-5">
+					
+						<div class="big_card col-4 position-relative" style="height:80vh;">
+							<h6 class="mb-3 text-body-secondary">Filters</h6>
+							<form action="javascript:void(0)" id="fltr_frm">
+								<div class="accordion" id="search_filter_accordian">
+								  <div class="accordion-item">
+								    <h2 class="accordion-header">
+								      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+								        Location
+								      </button>
+								    </h2>
+								    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse">
+								      <div class="accordion-body">
+								        <select name="fltr_location_type" id="add_location_type" class="form-select fs-8 required mb-3">
+								          <option value="">Select an option</option>
+								          <option value="Remote">Remote</option>
+								          <option value="at_office">At office</option>
+								        </select>
+								        <input type="text" class="form-control fs-8 " id="fltr_location" placeholder="Enter Location" disabled="true">
+								      </div>
+								    </div>
+								  </div>
+								  <div class="accordion-item">
+								    <h2 class="accordion-header">
+								      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+								        Experience
+								      </button>
+								    </h2>
+								    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
+								      <div class="accordion-body">
+								        <div class="row">
+								            <div class="col-6">
+								        
+								            <input type="number" class="form-control fs-8" id="add_min_exp" placeholder="Min">
+								        </div>
+								        <div class="col-6">
+								           
+								            <input type="number" class="form-control fs-8" id="add_max_exp" placeholder="Max">
+								        </div>
+								           </div>
+								      </div>
+								    </div>
+								  </div>
+								  <div class="accordion-item">
+								    <h2 class="accordion-header">
+								      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+								        Salary
+								      </button>
+								    </h2>
+								    <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
+								      <div class="accordion-body">
+								        <select name="add_salary" id="add_salary" class="form-select fs-8">
+								          <option value="">Select an option</option>
+								        
+								        </select>
+								      </div>
+								    </div>
+								  </div>
+								  <div class="accordion-item">
+								    <h2 class="accordion-header">
+								      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour">
+								        D&I Category
+								      </button>
+								    </h2>
+								    <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse">
+								      <div class="accordion-body">
+								        <select name="dni_category" id="dni_category" class="form-select fs-8">
+									        <option value="">Select an option</option>
+									    	<option value="Women">Women</option>
+									    	<option value="Pwd">Pwd</option>
+									    	<option value="LGBTQI+">LGBTQI+</option>
+									    	<option value="Veterans">Veterans</option>
+									    	<option value="Retirees">Retirees</option>		
+									    </select>
+								      </div>
+								    </div>
+
+								  </div>
+								</div>
+							</form>
+							<div class="fltr_btns">
+								<a href="javascript:void(0)" class="text-body-secondary" id="fltr_clear">Clear</a>
+								<a href="javascript:void(0)" class="txt-primary float-end" id="fltr_apply">Apply</a>
+							</div>
+						</div>
+						<div class="col-8 px-5">	
+							<div class="main_search_box d-flex justify-content-between align-items-center">
+								<div>
+									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+									  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+									</svg>
+								</div>	
+								<div class="flex-grow-1">
+									<input type="text" class="w-100 " placeholder="Enter Skills / Designations / Companies" id="main_search_input">
+								</div>
+								<div>
+									<button id="filter_candidates" class="btn btn-block w-100 text-white" type="button">Search</button>
+								</div>
+							</div>
+							<div class="row mt-5 big_card d-none position-relative" id="search_result">
+								<a href="#" class="txt-primary d-none" id="save_search_btn">Save Search</a>
+								<div class="col-12">
+									
+									<ul class="list-unstyled applicants_list">
+										
+							   		</ul>
+								</div>
+							</div>
+
+
+							<div class="mt-5">
+								<div class="row">
+									<div class="col-6">
+										<p class="f-8 text-body-secondary">Recent Searches</p>
+										<div class="big_card" style="height:100%">
+											<ul class="list-unstyled mb-0 skeleton-n59myykwpka" id="recent_search_list"></ul>
+										</div>
+									</div>
+									<div class="col-6">
+										<p class="f-8 text-body-secondary">Saved Searches</p>
+										<div class="big_card" style="height:100%">
+											<ul class="list-unstyled mb-0 skeleton-n59myykwpka" id="saved_search_list"></ul>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					
+				</div>
+			</main>
+		</div>
+	</section>
+
+
+	<div id="footer_div"></div>
+
+
+	
+
+	<script src="js/jquery-3.7.0.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.31/dist/sweetalert2.all.min.js"></script>
+	<script src="js/api.js"></script>
+	<script>
+		$(document).ready(function(){
+			// $("#menu_applicants").addClass('active');
+	        var get_applicant_url = api_url+'/api/get-applicant-dashboard-data';
+	        var getSalaryMasterUrl = api_url+'/api/salary-ranges';
+	        var SaveSearch = api_url+'/api/save-search';
+	        var getRecentSearch = api_url+'/api/recent-search';
+	        var getSavedSearch = api_url+'/api/get-saved-search-list';
+	        var getSearchSuggestion = api_url+'/api/get-suggestions';
+	        var filteredCandidateList = api_url+'/api/get-filtered-candidate-list';
+
+	       
+	        
+	        setTimeout(function(){
+			    $("#main_search_input").focus();
+			}, 0);
+
+
+			
+			$("#filter_candidates").on("click",function(){
+
+				if($("#main_search_input").val() == ""){
+					$(".main_search_box").addClass('error_alert');
+					setTimeout(function(){
+						$(".main_search_box").removeClass('error_alert');
+					},1500)
+					return false;
+				}
+				var loc = "";
+				if($("#add_location_type").val() == "at_office"){
+					loc = $("#fltr_location").val();
+				}else if($("#add_location_type").val() == "Remote"){
+					loc = "Remote"
+				}
+				
+				var postData = {
+					    "employeeId": localStorage.getItem('employeeId'),
+					    "search": $("#main_search_input").val(),
+					    "filter": {
+					        "location": loc,
+					        "minExp": $("#add_min_exp").val(),
+					        "maxExp": $("#add_max_exp").val(),
+					        "category": $("#dni_category").val()
+					    }
+					};
+				$.ajax({
+	                url: filteredCandidateList,
+	                type: "POST",
+	                data: JSON.stringify(postData),
+	                dataType: "json",
+	                contentType: 'application/json',
+	                success: function(response_data) {
+	                    console.log(response_data);
+	                    $(".applicants_list").html(" ");
+                        if(response_data['data'].length > 0){
+
+                        	a_data = response_data.data;
+                        	$(a_data).each(function(index, el) {
+
+	                    		var image = 'images/default-user.png';
+	                    		if(el.photo){
+	                    			image = el.photo;
+	                    		}
+	                    		var sk_p = '';
+	                    		if(el.skills != null){
+	                    			skills = el.skills.split(',');
+	                    			
+	                    			$(skills).each(function(ind, sk) {
+	                    				sk_p += '<span>'+sk+'</span>';
+	                    			});
+	                    		}
+
+	                    		var pf_loc = '';
+	                    		if(el.preferred_location != null){
+	                    			preferred_location = el.preferred_location.split(',');
+	                    			
+	                    			$(preferred_location).each(function(ind, pf) {
+	                    				pf_loc += '<span>'+pf+'</span>';
+	                    			});
+	                    		}
+	                    		var age = '';
+	                    		if(el.dob){
+	                    			age = new Date().getYear() - new Date(el.dob).getYear();
+	                    		}
+	                    		var edu = '';
+	                    		if(el.studentEducation.length > 0){
+	                    			edu = el.studentEducation[0].degree_id+', '+el.studentEducation[0].university_id+' ('+el.studentEducation[0].passing_year+')';
+	                    		}
+         						var applicants_list = '<li class="d-flex p-2"><div class="me-3"><img src="'+image+'" class="img_icn"></div><div><div class="d-flex justify-content-between align-items-center"><h4 class="txt-primary user_name fs-5 mb-0">'+el.name+' <span>('+el.gender+', '+age+')</span></h4><div class="fs-7"><a href=""><i class="bi bi-eye"></i></a><a href="mailto:'+el.email+'"><i class="bi bi-envelope"></i></a><a href="tel:'+el.mobile+'"><i class="bi bi-telephone"></i></a><a href="https://wa.me/'+el.mobile+'"><i class="bi bi-whatsapp"></i></a></div></div><div class="mt-2"><span class="me-4"><i class="bi bi-briefcase-fill"></i> '+el.experience+' Year(s)</span><span class="me-4"><i class="bi bi-wallet-fill"></i> '+el.salary+'</span><span class="me-4"><i class="bi bi-geo-alt-fill"></i> '+el.location+'</span><span class=""><i class="bi bi-people-fill"></i> '+el.dni_category+'</span></div><div class="row mt-3"><div class="col-3 label">Current</div><div class="col-9 label-val">'+el.current_company+'</div><div class="col-3 label">Previous</div><div class="col-9 label-val">'+el.previous_company+'</div><div class="col-3 label">Education</div><div class="col-9 label-val">'+edu+'</div><div class="col-3 label">Pref. Location</div><div class="col-9 label-val">'+pf_loc+'</div><div class="col-3 label">Skills</div><div class="col-9 label-val skills_pills">'+sk_p+'</div></div></div></li>';
+
+         						// var applicants_list = '<li class="d-flex">'+
+	         //                '<div class="me-3">'+
+	         //                    '<img src="'+image+'" class="img_icn">'+
+	         //                '</div>'+
+	         //                '<div>'+
+	         //                    '<h4 class="txt-primary user_name">'+el.name+'</h4>'+
+	         //                    '<p class="fs-8 text-body-secondary">'+el.job_role+', '+el.gender+' ('+el.dni_category+')</p>'+
+	         //                    '<p class="fs-9 text-body-secondary">'+el.bio+'</p>'+
+	         //                '</div></li>';
+
+
+
+                    			$(".applicants_list").append(applicants_list);
+                        	});
+                        	$("#save_search_btn").removeClass('d-none');
+                        }else{
+                        	$(".applicants_list").append("<li>No result found<li>");
+                        	$("#save_search_btn").addClass('d-none');
+                        }
+                        $("#search_result").toggleClass('d-none');
+	                },
+	                error: function(jqXHR, textStatus, errorThrown) {
+	                    console.error('Error:', textStatus, errorThrown);
+	                }
+	            });
+			});
+
+
+			
+			$(document).on("click","#save_search_btn",function(){
+				
+				var loc = "";
+				if($("#add_location_type").val() == "at_office"){
+					loc = $("#fltr_location").val();
+				}else if($("#add_location_type").val() == "Remote"){
+					loc = "Remote"
+				}
+				
+				var postData = {
+				    "employeeId": localStorage.getItem('employeeId'),
+				    "searchKeyword": $("#main_search_input").val(),
+				    "filter": {
+				        "location": loc,
+				        "minExp": $("#add_min_exp").val(),
+				        "maxExp": $("#add_max_exp").val(),
+				        "category": $("#dni_category").val()
+				    }
+				};
+
+				$.ajax({
+	                url: SaveSearch,
+	                type: "POST",
+	                data: JSON.stringify(postData),
+	                dataType: "json",
+	                contentType: 'application/json',
+	                success: function(data) {
+	                    if(data.code == 200){
+	                    	$("#save_search_btn").addClass('d-none');
+	                    	Swal.fire('Search saved!');
+	                    }else{
+	                    	Swal.fire('Something went wrong');
+	                    }
+	                },
+	                error: function(jqXHR, textStatus, errorThrown) {
+	                    console.error('Error:', textStatus, errorThrown);
+	                }
+	            });
+			});
+
+			$( "#main_search_input" ).autocomplete({
+		      source: function( request, response ) {
+		        $.ajax( {
+		          url: getSearchSuggestion,
+		          dataType: "json",
+		          method: "POST",
+		          data: {
+		            search: request.term
+		          },
+		          success: function( data ) {
+		            response($.map(data.data, function (item) {
+	                    return {
+	                        label: item,
+	                        value: item
+	                    };
+	                }));
+		          }
+		        } );
+		      },
+		      minLength: 0,
+		      select: function( event, ui ) {
+		        
+		      }
+		    });
+
+
+	        var postData = {
+	            "employeeId": localStorage.getItem('employeeId')
+	        };
+
+	        $.ajax({
+                url: getSavedSearch,
+                type: "POST",
+                data: JSON.stringify(postData),
+                dataType: "json",
+                contentType: 'application/json',
+                success: function(data) {
+                    $("#saved_search_list").html(" ");
+                    $(data.data).each(function(index, el) {
+                    	$("#saved_search_list").append('<li>'+el.search_keyword+'</li>');
+                    });
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error('Error:', textStatus, errorThrown);
+                }
+            });
+
+            $.ajax({
+                url: getRecentSearch,
+                type: "POST",
+                data: JSON.stringify(postData),
+                dataType: "json",
+                contentType: 'application/json',
+                success: function(data) {
+                    $("#recent_search_list").html(" ");
+                    $(data.data).each(function(index, el) {
+                    	$("#recent_search_list").append('<li>'+el.search_keyword+'</li>');
+                    });
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error('Error:', textStatus, errorThrown);
+                }
+            });
+            $(document).on("click","#recent_search_list li",function(){
+            	
+            	if($(this).text()){
+            		$( "#main_search_input" ).val($(this).text());
+            		$("#filter_candidates").click();
+            	}
+            });
+
+            $(document).on("click","#saved_search_list li",function(){
+            	
+            	if($(this).text()){
+            		$( "#main_search_input" ).val($(this).text());
+            		$("#filter_candidates").click();
+            	}
+            });
+
+
+
+	        $.ajax({
+                url: getSalaryMasterUrl,
+                type: "GET",
+                dataType: "json",
+                success: function(data) {
+                    // console.log(data['data']);
+                    salary_list = '<option value="">Select an option</option>'
+                    for(i=0; i<= data['data'].length-1; i++){
+                        salary_list = salary_list + '<option value='+data['data'][i]['id']+'>'+data['data'][i]['name']+'</option>'
+                    $("#add_salary").html(salary_list);
+                    $("#flt_salary").html(salary_list);
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error('Error:', textStatus, errorThrown);
+                }
+            });
+
+	        $("#add_location_type").on('change', function(event) {
+				event.preventDefault();
+				if($(this).val() == "at_office"){
+					$("#fltr_location").prop('disabled',false);
+					$("#fltr_location").focus();
+				}else{
+					$("#fltr_location").prop('disabled',true);
+				}
+			});
+			$("#fltr_clear").on("click",function(){
+				$("#fltr_frm")[0].reset();
+			});
+			$("#fltr_apply").on("click",function(){
+				$("#filter_candidates").click();
+			});
+
+    });		
+	</script>	
+</body>
+</html>
